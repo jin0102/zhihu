@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.huas.zhihu.mapper.NoticeMapper">
+
+    <resultMap id="BaseResultMap" type="cn.edu.huas.zhihu.pojo.Notice">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="notice_type" column="notice_type" jdbcType="BIGINT"/>
+            <result property="notice_time" column="notice_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,notice_type,notice_time
+    </sql>
+</mapper>
