@@ -17,7 +17,7 @@
         user_id,question_id
     </sql>
     
-    <select id="getAnswerInfos" resultType="Answer">
+    <select id="getAnswerInfos" resultType="cn.edu.huas.zhihu.pojo.Answer">
         select *
         from answer
     </select>
