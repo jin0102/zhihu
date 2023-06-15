@@ -6,7 +6,10 @@
     "pages/chat/chat",
     "pages/more/more",
     "pages/answer/answer",
-    "pages/question/question"
+    "pages/question/question",
+    "pages/more/user/user",
+    "pages/more/follow/follow",
+    "pages/more/collection/collection"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -22,5 +22,23 @@ Page({
         userInfo:userInfo
       })
     })
+  },
+
+  getUserInfo2: function () {
+    wx.navigateTo({
+      url: 'user/user',
+    })
+  },
+
+  getUserFollow: function () {
+    wx.navigateTo({
+      url: 'follow/follow',
+    })
+  },
+
+  getUserCollection: function () {
+    wx.navigateTo({
+      url: 'collection/collection',
+    })
   }
 })

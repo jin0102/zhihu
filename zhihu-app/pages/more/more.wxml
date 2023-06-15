@@ -1,6 +1,6 @@
 
 <view class="container more">
-  <view class="user flex-wrp">
+  <view class="user flex-wrp" bindtap="getUserInfo2">
     <view class="avatar flex-item">
       <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     </view>
@@ -11,7 +11,7 @@
   </view>
 
   <view class="my">
-    <view class="my-item flex-wrp">
+    <view class="my-item flex-wrp" bindtap="getUserFollow">
       <view class="myitem-icon flex-item" >
         <image src="../../images/eye.png"></image>
       </view>
@@ -19,7 +19,7 @@
         <text>我的关注</text>
       </view>
     </view>
-    <view class="my-item flex-wrp">
+    <view class="my-item flex-wrp" bindtap="getUserCollection">
       <view class="myitem-icon flex-item" >
         <image src="../../images/star.png"></image>
       </view>
