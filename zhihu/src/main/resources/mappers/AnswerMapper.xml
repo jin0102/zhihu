@@ -16,4 +16,14 @@
         id,answer_content,answer_time,
         user_id,question_id
     </sql>
+    
+    <select id="getAnswerInfos" resultType="cn.edu.huas.zhihu.pojo.Answer">
+        select *
+        from answer
+    </select>
+
+    <select id="queryTotal" resultType="java.lang.Integer">
+        select count(*)
+        from answer
+    </select>
 </mapper>
