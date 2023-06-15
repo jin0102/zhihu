@@ -1,6 +1,7 @@
 package cn.edu.huas.zhihu.service;
 
 import cn.edu.huas.zhihu.pojo.Answer;
+import cn.edu.huas.zhihu.vo.ResultVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -9,5 +10,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2023-06-14 23:29:33
 */
 public interface AnswerService extends IService<Answer> {
-
+    ResultVo getAnswerInfos(int page, int limit);
 }

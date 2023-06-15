@@ -5,7 +5,9 @@ var app = getApp()
 Page({
   data: {
     feed: [],
-    feed_length: 0
+    feed_length: 0,
+    page:1,
+    ansData:[],
   },
   //事件处理函数
   bindItemTap: function(event) {
@@ -28,6 +30,26 @@ Page({
     console.log('onLoad')
     var that = this
     //调用应用实例的方法获取全局数据
+    wx.request({
+      url: that.data.httpUrl+'answer/getAnswerInfos', //仅为示例，并非真实的接口地址
+      data: {
+        page: that.data.page,
+        limit: 4
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success (res) {
+        console.log(res.data)
+        if(res.data.code==0){  //说明请求成功，把返回的数据，设置给data
+          that.setData({
+            ansData:res.data.data
+          })
+        }else{  //失败  提示   失败原因
+
+        }
+      }
+    })
     this.getData();
   },
   upper: function () {
