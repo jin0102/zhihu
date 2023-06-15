@@ -8,6 +8,7 @@ Page({
     feed_length: 0,
     page:1,
     ansData:[],
+    httpUrl:"http://localhost:8080/",
   },
   //事件处理函数
   bindItemTap: function(event) {
@@ -50,7 +51,7 @@ Page({
         }
       }
     })
-    this.getData();
+    this.getData();//目前获取信息方式
   },
   upper: function () {
     wx.showNavigationBarLoading()
