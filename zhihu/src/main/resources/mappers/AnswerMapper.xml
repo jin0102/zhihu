@@ -5,9 +5,13 @@
 
 <!--namespace = 所需实现的接口全限定名-->
 <mapper namespace="cn.edu.huas.zhihu.mapper.AnswerMapper">
-    <select id="getAnswerInfos" resultType="Answer">
-        select *
-        from answer
+    <select id="getAnswerInfos" resultType="AnswerBean">
+    select ans.id,ans.answer_ctnt,ans.user_id,ans.question_id,ans.good,user.username,user.imageurl,qus.question_text,qus.comment_num
+    FROM answer ans
+             INNER JOIN question qus
+                        ON ans.question_id = qus.id
+             INNER JOIN user
+                        ON ans.user_id = user.id
     </select>
 
     <select id="queryTotal" resultType="java.lang.Integer">
