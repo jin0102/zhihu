@@ -17,7 +17,7 @@
                     <view class="avatar">
                         <image src="{{item.imageurl}}"></image>
                     </view>
-                    <text>{{item.username}}{{item.feed_source_txt}}</text>
+                    <text>{{item.username}}{{feed_source_txt}}</text>
                 </a>
                 <image class="item-more" mode="aspectFit" src="../../images/more.png"></image>
             </view>

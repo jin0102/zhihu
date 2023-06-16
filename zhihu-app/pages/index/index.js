@@ -9,7 +9,7 @@ Page({
     page:1,
     ansData:[],
     httpUrl:"http://localhost:8080/",
-    
+    feed_source_txt: " 回答了问题"
   },
   //事件处理函数
   bindItemTap: function(event) {
@@ -36,7 +36,8 @@ Page({
       url: that.data.httpUrl+'answer/getAnswerInfos', //仅为示例，并非真实的接口地址
       data: {
         page: that.data.page,
-        limit: 4
+        limit: 4,
+        
       },
       header: {
         'content-type': 'application/json' // 默认值
