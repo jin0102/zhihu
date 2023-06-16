@@ -62,11 +62,13 @@ Page({
       that.setData({
         isLogin: true
       })
+      console.log(that.data.code)
       console.log(that.data.isLogin)
     } else {
       that.setData({
         isLogin: false
       })
+      console.log(that.data.code)
       console.log(that.data.isLogin)
     }
   },
@@ -85,15 +87,24 @@ Page({
 
   tuichu: function () {
     var that = this
-    wx.clearStorageSync({
+    // wx.clearStorageSync({
+    //   key: 'token',
+    //   success (res) {
+    //     that.setData({
+    //       code: 1
+    //     })
+    //   }
+    // })
+    wx.removeStorage({
       key: 'token',
       success (res) {
+        console.log(res.errMsg)
         that.setData({
           code: 1
         })
+        that.onShow()
       }
-    })
-    that.onShow()
+  })
   },
 
   getUserInfo2: function () {
