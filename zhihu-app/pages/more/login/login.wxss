@@ -1,0 +1,28 @@
+/* pages/more/login/login.wxss */
+.wapper{
+  padding: 0 20rpx;
+  margin-top: 40rpx;
+}
+.formItem{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20rpx;
+}
+.formItem input{
+  border: 1px solid #999;
+  padding: 10rpx 15rpx;
+}
+
+.btn{
+  background-color: #2A8CE5;
+  font-weight: bold;
+  color: #fff;
+  margin-top: 20rpx;
+}
+.wapper form{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

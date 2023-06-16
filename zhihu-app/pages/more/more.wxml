@@ -1,12 +1,25 @@
 
 <view class="container more">
   <view class="user flex-wrp" bindtap="getUserInfo2">
-    <view class="avatar flex-item">
+    <!-- <view class="avatar flex-item">
       <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     </view>
     <view class="user-info flex-item">
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
       <text class="edit">查看或编辑个人主页</text>
+    </view> -->
+    <view class="avatar flex-item">
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    </view>
+    <view class="user-info flex-item">
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <view wx:if="{{code}}" class="user-login-register">
+        <view class="login" bindtap="login">立即登录</view>
+        <view class="register" bindtap="register">立即注册</view>
+      </view>
+      <view wx:else="">
+        <text class="edit">查看或编辑个人主页</text>
+      </view>
     </view>
   </view>
 

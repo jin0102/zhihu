@@ -9,7 +9,9 @@
     "pages/question/question",
     "pages/more/user/user",
     "pages/more/follow/follow",
-    "pages/more/collection/collection"
+    "pages/more/collection/collection",
+    "pages/more/login/login",
+    "pages/more/register/register"
   ],
   "window": {
     "backgroundTextStyle": "light",
