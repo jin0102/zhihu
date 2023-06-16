@@ -1,25 +1,19 @@
 package cn.edu.huas.zhihu.pojo;
 
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-/**
- * 
- * @TableName answer
- */
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Answer {
-
+public class Question {
     private Long id;
-    private String answer_ctnt;
-    private Date answer_time;
+    private String question_text;
     private Long user_id;
-    private Long question_id;
-
+    private Long comment_num;
 }
