@@ -6,7 +6,7 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     code: 1,
-    login: false
+    isLogin: false
   },
   //事件处理函数
   bindViewTap: function() {
@@ -25,10 +25,49 @@ Page({
         userInfo:userInfo
       })
     })
-    if (code == 0) {
-      that.login = true
+    wx.getStorage({
+      key: 'token',
+      success (res) {
+        console.log("我的页面获取的用户信息：",res.data)
+      }
+    })
+  },
+
+  onShow: function () {
+    var that = this
+    wx.getStorage({
+      key: 'token',
+      success (res) {
+        console.log("我的页面获取的用户信息2：",res.data)
+        that.setData({
+          code: 0
+        })
+        if (that.data.code == 1) {
+          that.setData({
+            isLogin: true
+          })
+          console.log(that.data.isLogin)
+        } else {
+          that.setData({
+            isLogin: false
+          })
+          console.log(that.data.isLogin)
+        }
+      },
+      fail (res) {
+        console.log("没有用户缓存"+that.data.code)
+      }
+    })
+    if (that.data.code == 1) {
+      that.setData({
+        isLogin: true
+      })
+      console.log(that.data.isLogin)
     } else {
-      that.login = false
+      that.setData({
+        isLogin: false
+      })
+      console.log(that.data.isLogin)
     }
   },
 
@@ -42,6 +81,19 @@ Page({
     wx.navigateTo({
       url: 'register/register',
     })
+  },
+
+  tuichu: function () {
+    var that = this
+    wx.clearStorageSync({
+      key: 'token',
+      success (res) {
+        that.setData({
+          code: 1
+        })
+      }
+    })
+    that.onShow()
   },
 
   getUserInfo2: function () {

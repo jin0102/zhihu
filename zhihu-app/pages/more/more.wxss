@@ -47,6 +47,12 @@
   margin-left: 30rpx;
 }
 
+.quit{
+  font-size: 30rpx;
+  color: #2A8CE5;
+  margin-left: 30rpx;
+}
+
 .my{
   margin: 15rpx 0 0 0;
   border-top: solid 1px #ebebeb;
