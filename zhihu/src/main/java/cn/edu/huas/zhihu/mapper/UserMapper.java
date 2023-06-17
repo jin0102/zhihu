@@ -12,7 +12,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserMapper {
 	User userLogin(User user);
-
+	Integer userRegister(User user);
+	User queryByPhone(User user);
 }
 
 

@@ -18,4 +18,9 @@ public class UserController {
 	public ResultVo userLogin(User user) {
 		return userService.userLogin(user);
 	}
+
+	@RequestMapping("userRegister")
+	public ResultVo userRegister(User user) {
+		return userService.userRegister(user);
+	}
 }

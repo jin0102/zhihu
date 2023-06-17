@@ -10,4 +10,5 @@ import cn.edu.huas.zhihu.vo.ResultVo;
 */
 public interface UserService {
 	ResultVo userLogin(User user);
+	ResultVo userRegister(User user);
 }

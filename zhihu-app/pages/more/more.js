@@ -6,7 +6,8 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     code: 1,
-    isLogin: false
+    isLogin: false,
+    weixinUser: {}
   },
   //事件处理函数
   bindViewTap: function() {
@@ -18,12 +19,21 @@ Page({
     console.log('onLoad')
     var that = this
     //调用应用实例的方法获取全局数据
-    app.getUserInfo(function(userInfo){
-      //更新数据
-      console.log(userInfo)
-      that.setData({
-        userInfo:userInfo
-      })
+    // app.getUserInfo(function(userInfo){
+    //   //更新数据
+    //   console.log(userInfo)
+    //   that.setData({
+    //     userInfo:userInfo
+    //   })
+    // })
+    wx.getStorage({
+      key: 'weixinUser',
+      success (res) {
+        console.log("我的页面获取的用户信息weixin：",res.data)
+        that.setData({
+          weixinUser:res.data,
+        })
+      }
     })
     wx.getStorage({
       key: 'token',
@@ -40,7 +50,8 @@ Page({
       success (res) {
         console.log("我的页面获取的用户信息2：",res.data)
         that.setData({
-          code: 0
+          code: 0,
+          userInfo: res.data
         })
         if (that.data.code == 1) {
           that.setData({
@@ -56,6 +67,13 @@ Page({
       },
       fail (res) {
         console.log("没有用户缓存"+that.data.code)
+        app.getUserInfo(function(userInfo){
+          //更新数据
+          console.log(userInfo)
+          that.setData({
+            userInfo: userInfo,
+          })
+        })
       }
     })
     if (that.data.code == 1) {

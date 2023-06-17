@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    httpUrl: "http://localhost:8080/"
   },
 
   toLogin: function () {
@@ -19,6 +19,51 @@ Page({
    */
   onLoad(options) {
 
+  },
+
+  //提交表单
+  formSubmit: function (e) {
+    var that = this;
+    console.log(e.detail.value);
+    //1.获取本地缓存的user信息   
+    wx.getStorage({
+      key: 'weixinUser',
+      success(res) {
+        //res.data用户信息
+        //2.发起请求   注册  post请求
+        wx.request({
+          url: that.data.httpUrl + 'user/userRegister', //仅为示例，并非真实的接口地址
+          method: "post",
+          data: {
+            imageurl: res.data.avatarUrl,
+            username: e.detail.value.username,
+            password: e.detail.value.password,
+            phone: e.detail.value.phone
+          },
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          success(res) {
+            //res.data返回的值
+            console.log(res.data)
+            if (res.data.code == 0) { //表示成功  
+              wx.showToast({
+                title: res.data.msg,
+                icon: 'success',
+                duration: 2000
+              })
+            } else {
+              //失败 显示提示信息
+              wx.showToast({
+                title: res.data.msg,
+                icon: 'error',
+                duration: 2000
+              })
+            }
+          }
+        })
+      }
+    })
   },
 
   /**
