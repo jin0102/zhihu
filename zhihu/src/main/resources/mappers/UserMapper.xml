@@ -11,4 +11,13 @@
         where phone = #{phone}
         and password = #{password}
     </select>
+    <insert id="userRegister" parameterType="User">
+        insert into user
+        values (#{id}, #{username}, #{phone}, #{password}, #{imageurl})
+    </insert>
+    <select id="queryByPhone" resultType="User">
+        select *
+        from user
+        where phone = #{phone}
+    </select>
 </mapper>

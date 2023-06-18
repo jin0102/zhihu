@@ -1,6 +1,6 @@
 
 <view class="container more">
-  <view class="user flex-wrp" bindtap="getUserInfo2">
+  <view class="user flex-wrp">
     <!-- <view class="avatar flex-item">
       <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     </view>
@@ -9,16 +9,19 @@
       <text class="edit">查看或编辑个人主页</text>
     </view> -->
     <view class="avatar flex-item">
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <image wx:if="{{userInfo.imageurl}}" class="userinfo-avatar" src="{{userInfo.imageurl}}" background-size="cover"></image>
+      <image wx:else="" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     </view>
     <view class="user-info flex-item">
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      <view wx:if="{{code}}" class="user-login-register">
+      <text wx:if="{{userInfo.username}}" class="userinfo-nickname">{{userInfo.username}}</text>
+      <text wx:else="" class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <view wx:if="{{isLogin}}" class="user-login-register">
         <view class="login" bindtap="login">立即登录</view>
         <view class="register" bindtap="register">立即注册</view>
       </view>
-      <view wx:else="">
-        <text class="edit">查看或编辑个人主页</text>
+      <view wx:else="" style="display: flex;">
+        <view class="edit" bindtap="getUserInfo2">查看或编辑个人主页</view>
+        <view class="quit" bindtap="tuichu">退出登录</view>
       </view>
     </view>
   </view>

@@ -7,6 +7,8 @@ import cn.edu.huas.zhihu.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 /**
 * @author 123
 * @description 针对表【user】的数据库操作Service实现
@@ -25,6 +27,19 @@ public class UserServiceImpl implements UserService{
 			return ResultVo.getSuccessVo("登录成功", user1);
 		}
 		return ResultVo.getFailedVo("登陆失败");
+	}
+
+	@Override
+	public ResultVo userRegister(User user) {
+		User user1 = userMapper.queryByPhone(user);
+		if (user1 != null) {
+			return ResultVo.getFailedVo("手机号已存在");
+		}
+		Integer i = userMapper.userRegister(user);
+		if (i > 0) {
+			return ResultVo.getSuccessVo("注册成功");
+		}
+		return ResultVo.getFailedVo("注册失败");
 	}
 }
 

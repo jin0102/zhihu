@@ -6,7 +6,8 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     code: 1,
-    login: false
+    isLogin: false,
+    weixinUser: {}
   },
   //事件处理函数
   bindViewTap: function() {
@@ -18,17 +19,75 @@ Page({
     console.log('onLoad')
     var that = this
     //调用应用实例的方法获取全局数据
-    app.getUserInfo(function(userInfo){
-      //更新数据
-      console.log(userInfo)
-      that.setData({
-        userInfo:userInfo
-      })
+    // app.getUserInfo(function(userInfo){
+    //   //更新数据
+    //   console.log(userInfo)
+    //   that.setData({
+    //     userInfo:userInfo
+    //   })
+    // })
+    wx.getStorage({
+      key: 'weixinUser',
+      success (res) {
+        console.log("我的页面获取的用户信息weixin：",res.data)
+        that.setData({
+          weixinUser:res.data,
+        })
+      }
     })
-    if (code == 0) {
-      that.login = true
+    wx.getStorage({
+      key: 'token',
+      success (res) {
+        console.log("我的页面获取的用户信息：",res.data)
+      }
+    })
+  },
+
+  onShow: function () {
+    var that = this
+    wx.getStorage({
+      key: 'token',
+      success (res) {
+        console.log("我的页面获取的用户信息2：",res.data)
+        that.setData({
+          code: 0,
+          userInfo: res.data
+        })
+        if (that.data.code == 1) {
+          that.setData({
+            isLogin: true
+          })
+          console.log(that.data.isLogin)
+        } else {
+          that.setData({
+            isLogin: false
+          })
+          console.log(that.data.isLogin)
+        }
+      },
+      fail (res) {
+        console.log("没有用户缓存"+that.data.code)
+        app.getUserInfo(function(userInfo){
+          //更新数据
+          console.log(userInfo)
+          that.setData({
+            userInfo: userInfo,
+          })
+        })
+      }
+    })
+    if (that.data.code == 1) {
+      that.setData({
+        isLogin: true
+      })
+      console.log(that.data.code)
+      console.log(that.data.isLogin)
     } else {
-      that.login = false
+      that.setData({
+        isLogin: false
+      })
+      console.log(that.data.code)
+      console.log(that.data.isLogin)
     }
   },
 
@@ -42,6 +101,28 @@ Page({
     wx.navigateTo({
       url: 'register/register',
     })
+  },
+
+  tuichu: function () {
+    var that = this
+    // wx.clearStorageSync({
+    //   key: 'token',
+    //   success (res) {
+    //     that.setData({
+    //       code: 1
+    //     })
+    //   }
+    // })
+    wx.removeStorage({
+      key: 'token',
+      success (res) {
+        console.log(res.errMsg)
+        that.setData({
+          code: 1
+        })
+        that.onShow()
+      }
+  })
   },
 
   getUserInfo2: function () {

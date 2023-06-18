@@ -1,0 +1,28 @@
+/* pages/start/start.wxss */
+page,.start{
+  width: 100%;
+  height: 100%;
+  background-color: #2A8CE5;
+}
+
+.start{
+  position: absolute;
+}
+
+.start-zhihu{
+  display: flex;
+  font-size: 100rpx;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50%;
+}
+
+button{
+  position: absolute;
+  bottom: 20%;
+  left: 15%;
+  width: 80%;
+  background-color: rgb(19, 134, 201);
+ 
+}
