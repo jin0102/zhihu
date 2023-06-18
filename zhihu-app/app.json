@@ -12,7 +12,8 @@
     "pages/more/follow/follow",
     "pages/more/collection/collection",
     "pages/more/login/login",
-    "pages/more/register/register"
+    "pages/more/register/register",
+    "pages/chat/message/message"
   ],
   "window": {
     "backgroundTextStyle": "light",

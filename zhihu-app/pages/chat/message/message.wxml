@@ -1,0 +1,29 @@
+<!--pages/chat/message/message.wxml-->
+<view class="root">
+  <scroll-view class="sv" scroll-y scroll-into-view="{{toBottom}}">
+
+    <view class="box" wx:for="{{content}}" id="item{{index}}">
+      <view class="item" wx:if="{{item.id == 1}}">
+        <image src="{{mineAvatorSrc}}" class="mineAvatorSrc"></image>
+        <view class="mineTextBox">
+          <text class="mineText">{{item.text}}</text>
+        </view>
+      </view>
+
+      <view class="item" wx:if="{{item.id == 0}}">
+        <view class="himTextBox">
+          <text class="himText">{{item.text}}</text>
+        </view>
+        <image src="{{himAvatorSrc}}" class="himAvatorSrc"></image>
+      </view>
+    </view>
+
+  </scroll-view>
+
+  <view class="sendBar">
+    <input type="text" model:value="{{mess}}" class="input" />
+    <view class="button" bindtap="sendMess">
+      <text class="buttonText">发送</text>
+    </view>
+  </view>
+</view>
