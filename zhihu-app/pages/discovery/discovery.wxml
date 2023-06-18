@@ -16,14 +16,14 @@
       </block>
     </swiper>
 
-    <block wx:for="{{feed}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
+    <block wx:for="{{ansData}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
       <view class="feed-item">
         <view class="feed-source">
           <a class="">
             <view class="avatar">
-              <image src="{{item.feed_source_img}}"></image>
+              <image src="{{item.imageurl}}"></image>
             </view>
-            <text>{{item.feed_source_name}}</text>
+            <text>{{item.username}}</text>
           </a>
         </view>
         <view class="feed-content">
@@ -38,7 +38,7 @@
             </view>
             <view class="answer-actions" bindtap="bindItemTap" data-qid="{{item.question_id}}">
               <view class="like dot">
-                <a>{{item.good_num}} 赞同 </a>
+                <a>{{item.good}} 赞同 </a>
               </view>
               <view class="comments dot">
                 <a>{{item.comment_num}} 评论 </a>
@@ -59,6 +59,6 @@
     <text>热门</text>
   </view>
   <view class="ctnt3 placehold" hidden="{{currentNavtab==3 ? '' : true}}">
-    <text>收藏</text>
+    <text>0000</text>
   </view>
 </scroll-view>

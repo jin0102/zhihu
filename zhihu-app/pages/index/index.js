@@ -53,7 +53,7 @@ Page({
         }
       }
     })
-    this.getData();
+    
   },
   upper: function () {
     wx.showNavigationBarLoading()

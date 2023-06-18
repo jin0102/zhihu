@@ -15,13 +15,37 @@ Page({
     interval: 5000,
     duration: 1000,
     feed: [],
-    feed_length: 0
+    feed_length: 0,
+    page:1,
+    ansData:[],
+    httpUrl:"http://localhost:8080/",
   },
   onLoad: function () {
     console.log('onLoad')
     var that = this
     //调用应用实例的方法获取全局数据
-    this.refresh();
+    wx.request({
+      url: that.data.httpUrl+'answer/getAnswerInfos', //仅为示例，并非真实的接口地址
+      data: {
+        page: that.data.page,
+        limit: 4,
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success (res) {
+        console.log("获取项目信息",res.data)
+        if(res.data.code==0){  //说明请求成功，把返回的数据，设置给data
+          that.setData({
+            ansData:res.data.data
+          })
+        }else{  //失败  提示   失败原因
+
+        }
+      }
+    })
+
+    
   },
   switchTab: function(e){
     this.setData({
@@ -45,6 +69,7 @@ Page({
       url: '../question/question?id='+qid
     })
   },
+
   upper: function () {
     wx.showNavigationBarLoading()
     this.refresh();
