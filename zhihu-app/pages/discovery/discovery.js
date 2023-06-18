@@ -108,6 +108,8 @@ Page({
 
     
   },
+  
+
   switchTab: function(e){
     this.setData({
       currentNavtab: e.currentTarget.dataset.idx

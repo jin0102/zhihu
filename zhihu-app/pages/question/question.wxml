@@ -9,9 +9,14 @@
                 <text class="tag">书籍</text>
                 <text class="tag">文学</text>
             </view>
-            <view class="que-title">
-                {{postData.question}}
-            </view>
+
+            <block >
+                <view class="que-title"  bindtap="bindQueTap" data-qid="{{item.question_id}}">
+                        <text>{{selansData[0].question_text}}</text>
+                </view>
+            </block>
+          
+            
             <view class="que-content">
                 WEB前端*不靠谱天气预报员*想做代码小仙女
             </view>
@@ -45,39 +50,38 @@
     </view>
     <view class="answer-feed">
 
-        <view bindtap="bindItemTap" class="feed-item" data-qid="{{postData.question_id}}">
-            <view class="feed-source">
-                <a class="" bindTap="">
-                    <view class="avatar">
-                        <image src="{{postData.feed_source_img}}"></image>
-                    </view>
-                    <text>{{postData.feed_source_name}}</text>
-                </a>
+      <block wx:for="{{selansData}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
+      <view class="feed-item">
+        <view class="feed-source">
+          <a class="">
+            <view class="avatar">
+              <image src="{{item.imageurl}}"></image>
             </view>
-            <view class="feed-content">
-                <view class="answer-body">
-                    <view>
-                        <text class="answer-txt">{{postData.answer_ctnt}} </text>
-                    </view>
-                    <view class="answer-actions">
-                        <view class="like dot">
-                            <a>3.9K 赞同 </a>
-                        </view>
-                        <view class="comments dot">
-                            <a>254 评论 </a>
-                        </view>
-                        <view class="time">
-                            <a>2 个月前</a>
-                        </view>
-
-                    </view>
-                </view>
-            </view>
+            <text>{{item.username}}</text>
+          </a>
         </view>
+        <view class="feed-content">
+          <view class="answer-body">
+            <view bindtap="bindItemTap" data-qid="{{item.question_id}}">
+              <text class="answer-txt" data-qid="{{item.question_id}}">{{item.answer_ctnt}}</text>
+            </view>
+            <view class="answer-actions" bindtap="bindItemTap" data-qid="{{item.question_id}}">
+              <view class="like dot">
+                <a>{{item.good}} 赞同 </a>
+              </view>
+              <view class="comments dot">
+                <a>{{item.answer_comment}} 评论 </a>
+              </view>
+              <view class="time">
+                <a>2 个月前</a>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
 
-
-
-
+        
 
     </view>
 </view>

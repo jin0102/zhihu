@@ -2,6 +2,8 @@ package cn.edu.huas.zhihu.mapper;
 
 import cn.edu.huas.zhihu.pojo.Answer;
 import cn.edu.huas.zhihu.pojo.AnswerBean;
+import cn.edu.huas.zhihu.pojo.Question;
+import cn.edu.huas.zhihu.pojo.SelectAnswer;
 import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
@@ -11,6 +13,7 @@ public interface AnswerMapper {
     List<AnswerBean> getFollowAnswerInfos(int user_id);
     List<AnswerBean> getHotAnswerInfos();
     List<AnswerBean> getCollectAnswerInfos(int user_id);
+    List<SelectAnswer> getSelectAnswerInfos(int question_id);
     Integer queryTotal();
 }
 

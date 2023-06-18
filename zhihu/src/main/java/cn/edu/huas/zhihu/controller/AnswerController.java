@@ -34,4 +34,10 @@ public class AnswerController {
 
         return answerService.getCollectAnswerInfos(page,limit,user_id);
     }
+
+    @RequestMapping("/getSelectAnswerInfos")
+    public ResultVo getSelectAnswerInfos(int page, int limit , int question_id){
+
+        return answerService.getSelectAnswerInfos(page,limit,question_id);
+    }
 }
