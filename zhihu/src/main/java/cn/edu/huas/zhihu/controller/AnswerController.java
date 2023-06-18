@@ -14,7 +14,24 @@ public class AnswerController {
 
     @RequestMapping("/getAnswerInfos")
     public ResultVo getAnswerInfos(int page, int limit){
+
         return answerService.getAnswerInfos(page,limit);
     }
 
+    @RequestMapping("/getFollowAnswerInfos")
+    public ResultVo getFollowAnswerInfos(int page, int limit , int user_id){
+        return answerService.getFollowAnswerInfos(page,limit,user_id);
+    }
+
+    @RequestMapping("/getHotAnswerInfos")
+    public ResultVo getHotAnswerInfos(int page, int limit){
+
+        return answerService.getHotAnswerInfos(page,limit);
+    }
+
+    @RequestMapping("/getCollectAnswerInfos")
+    public ResultVo getCollectAnswerInfos(int page, int limit , int user_id){
+
+        return answerService.getCollectAnswerInfos(page,limit,user_id);
+    }
 }

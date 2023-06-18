@@ -8,6 +8,9 @@ import java.util.List;
 @Mapper
 public interface AnswerMapper {
     List<AnswerBean> getAnswerInfos();
+    List<AnswerBean> getFollowAnswerInfos(int user_id);
+    List<AnswerBean> getHotAnswerInfos();
+    List<AnswerBean> getCollectAnswerInfos(int user_id);
     Integer queryTotal();
 }
 

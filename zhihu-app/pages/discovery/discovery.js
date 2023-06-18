@@ -2,7 +2,7 @@
 var util = require('../../utils/util.js')
 Page({
   data: {
-    navTab: ["推荐", "圆桌", "热门", "收藏"],
+    navTab: ["热门", "关注", "收藏"],
     currentNavtab: "0",
     imgUrls: [
       '../../images/picture2.jpg',
@@ -17,32 +17,93 @@ Page({
     feed: [],
     feed_length: 0,
     page:1,
-    ansData:[],
+    hotansData:[],
+    folansData:[],
+    colansData:[],
     httpUrl:"http://localhost:8080/",
+    token:[],
   },
   onLoad: function () {
     console.log('onLoad')
     var that = this
     //调用应用实例的方法获取全局数据
+
     wx.request({
-      url: that.data.httpUrl+'answer/getAnswerInfos', //仅为示例，并非真实的接口地址
+      url: that.data.httpUrl+'answer/getHotAnswerInfos', //接收热门回答
       data: {
         page: that.data.page,
-        limit: 4,
+        limit: 10,
       },
       header: {
         'content-type': 'application/json' // 默认值
       },
       success (res) {
-        console.log("获取项目信息",res.data)
+        console.log("获取hot项目信息",res.data)
         if(res.data.code==0){  //说明请求成功，把返回的数据，设置给data
           that.setData({
-            ansData:res.data.data
+            hotansData:res.data.data
           })
         }else{  //失败  提示   失败原因
 
         }
       }
+    })
+
+    wx.getStorage({
+      key: 'token',
+      success (res) {
+        that.setData(
+          {
+            token: res.data,
+          },
+        ) 
+        console.log("token信息",res.data);//token信息
+        console.log("id信息",that.data.token.id)
+        wx.request({
+          url: that.data.httpUrl+'answer/getFollowAnswerInfos', //接收关注回答
+          data: {
+            page: that.data.page,
+            limit: 10,
+            user_id:that.data.token.id
+          },
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success (res) {
+            console.log("获取项目信息",res.data)
+            if(res.data.code==0){  //说明请求成功，把返回的数据，设置给data
+              that.setData({
+                folansData:res.data.data
+              })
+            }else{  //失败  提示   失败原因
+    
+            }
+          }
+        })
+
+        wx.request({
+          url: that.data.httpUrl+'answer/getCollectAnswerInfos', //接收收藏回答
+          data: {
+            page: that.data.page,
+            limit: 10,
+            user_id:that.data.token.id
+          },
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success (res) {
+            console.log("获取col项目信息",res.data)
+            if(res.data.code==0){  //说明请求成功，把返回的数据，设置给data
+              that.setData({
+                colansData:res.data.data
+              })
+            }else{  //失败  提示   失败原因
+
+            }
+          }
+        })
+            },  
+            
     })
 
     

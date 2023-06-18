@@ -36,7 +36,7 @@ Page({
       url: that.data.httpUrl+'answer/getAnswerInfos', //仅为示例，并非真实的接口地址
       data: {
         page: that.data.page,
-        limit: 4,
+        limit: 10,
         
       },
       header: {

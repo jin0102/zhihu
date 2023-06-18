@@ -28,6 +28,30 @@ public class AnswerServiceImpl implements AnswerService{
         Integer count = answerMapper.queryTotal();
         return ResultVo.getSuccessVo("success",answerinfos,count);
     }
+
+    @Override
+    public ResultVo getFollowAnswerInfos(int page, int limit, int user_id) {
+        PageHelper.startPage(page,limit);
+        List<AnswerBean> followanswerinfos = answerMapper.getFollowAnswerInfos(user_id);
+        Integer count = answerMapper.queryTotal();
+        return ResultVo.getSuccessVo("success",followanswerinfos,count);
+    }
+
+    @Override
+    public ResultVo getHotAnswerInfos(int page, int limit) {
+        PageHelper.startPage(page,limit);
+        List<AnswerBean> hotanswerinfos = answerMapper.getHotAnswerInfos();
+        Integer count = answerMapper.queryTotal();
+        return ResultVo.getSuccessVo("success",hotanswerinfos,count);
+    }
+
+    @Override
+    public ResultVo getCollectAnswerInfos(int page, int limit, int user_id) {
+        PageHelper.startPage(page,limit);
+        List<AnswerBean> collectanswerinfos = answerMapper.getCollectAnswerInfos(user_id);
+        Integer count = answerMapper.queryTotal();
+        return ResultVo.getSuccessVo("success",collectanswerinfos,count);
+    }
 }
 
 

@@ -9,4 +9,7 @@ import cn.edu.huas.zhihu.vo.ResultVo;
 */
 public interface AnswerService {
     ResultVo getAnswerInfos(int page, int limit);
+    ResultVo getFollowAnswerInfos(int page, int limit , int user_id);
+    ResultVo getHotAnswerInfos(int page, int limit);
+    ResultVo getCollectAnswerInfos(int page, int limit , int user_id);
 }

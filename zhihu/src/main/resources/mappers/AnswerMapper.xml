@@ -14,6 +14,40 @@
                         ON ans.user_id = user.id
     </select>
 
+    <select id="getFollowAnswerInfos" resultType="AnswerBean">
+        select ans.id,ans.answer_ctnt,ans.user_id,ans.question_id,ans.good,user.username,user.imageurl,qus.question_text,qus.comment_num
+        FROM answer ans
+                 INNER JOIN question qus
+                            ON ans.question_id = qus.id
+                 INNER JOIN user
+                            ON ans.user_id = user.id
+                 INNER JOIN follow fol
+                            ON fol.follower_id = user.id
+        WHERE fol.user_id = #{user_id}
+    </select>
+
+    <select id="getHotAnswerInfos" resultType="AnswerBean">
+        select ans.id,ans.answer_ctnt,ans.user_id,ans.question_id,ans.good,user.username,user.imageurl,qus.question_text,qus.comment_num
+        FROM answer ans
+                 INNER JOIN question qus
+                            ON ans.question_id = qus.id
+                 INNER JOIN user
+                            ON ans.user_id = user.id
+        WHERE ans.good > 5000 OR qus.comment_num > 100
+    </select>
+
+    <select id="getCollectAnswerInfos" resultType="AnswerBean">
+        select ans.id,ans.answer_ctnt,ans.user_id,ans.question_id,ans.good,user.username,user.imageurl,qus.question_text,qus.comment_num
+        FROM answer ans
+                 INNER JOIN question qus
+                            ON ans.question_id = qus.id
+                 INNER JOIN user
+                            ON ans.user_id = user.id
+                 INNER JOIN collect col
+                            ON col.answer_id = ans.id
+        WHERE col.user_id = #{user_id}
+    </select>
+
     <select id="queryTotal" resultType="java.lang.Integer">
         select count(*)
         from answer
