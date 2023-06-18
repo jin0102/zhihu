@@ -12,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @ToString
 public class SelectAnswer {
-
+    private Long id;
     private String username;
     private String imageurl;
 

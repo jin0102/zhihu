@@ -15,10 +15,10 @@ Page({
   //事件处理函数
   bindItemTap: function(event) {
     console.log(event)
-    console.log("啊啊啊啊啊啊啊啊啊啊啊啊啊",event.currentTarget.dataset.qid)
-    var qid=event.currentTarget.dataset.qid
+    console.log("啊啊啊啊啊啊啊啊啊啊啊啊啊",event.currentTarget.dataset.aid)
+    var aid=event.currentTarget.dataset.aid
     wx.navigateTo({
-      url: '../answer/answer?id='+qid
+      url: '../answer/answer?id='+aid
     })
   },
   clickOn:function(event){
@@ -52,7 +52,7 @@ Page({
     console.log('onLoad',that.data)
     //调用应用实例的方法获取全局数据
     wx.request({
-      url: that.data.httpUrl+'answer/getSelectAnswerInfos', //接收热门回答
+      url: that.data.httpUrl+'answer/getSelectAnswerInfos', //接收
       data: {
         page: that.data.page,
         limit: 10,
@@ -72,12 +72,7 @@ Page({
         }
       }
     })
-    app.getUserInfo(function(userInfo){
-      //更新数据
-      that.setData({
-        userInfo:userInfo
-      })
-    })
+    
   },
   tapName: function(event){
     console.log(event)

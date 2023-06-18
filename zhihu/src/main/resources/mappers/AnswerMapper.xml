@@ -49,7 +49,7 @@
     </select>
 
     <select id="getSelectAnswerInfos" resultType="SelectAnswer">
-        select ans.answer_ctnt,ans.user_id,ans.question_id,ans.good,ans.answer_comment,ans.answer_date,qus.question_text,user.username,user.imageurl
+        select ans.id,ans.answer_ctnt,ans.user_id,ans.question_id,ans.good,ans.answer_comment,ans.answer_date,qus.question_text,user.username,user.imageurl
         FROM answer ans
                  INNER JOIN question qus
                             ON ans.question_id = qus.id

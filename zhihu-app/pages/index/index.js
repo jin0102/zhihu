@@ -14,10 +14,10 @@ Page({
   //事件处理函数
   bindItemTap: function(event) {
     console.log("点击点击",event)
-    console.log(event.currentTarget.dataset.qid)
-    var qid=event.currentTarget.dataset.qid
+    console.log(event.currentTarget.dataset.aid)
+    var aid=event.currentTarget.dataset.aid
     wx.navigateTo({
-      url: '../answer/answer?id='+qid
+      url: '../answer/answer?id='+aid
     })
   },
   bindQueTap: function(event) {
