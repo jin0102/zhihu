@@ -1,2 +1,13 @@
 <!--pages/more/follow/follow.wxml-->
-<text>pages/more/follow/follow.wxml</text>
+<view class="wapper">
+  <block wx:for="{{follow}}">
+    <view class="follow-item flex-wrp">
+      <view class="head flex-item">
+        <image class="follow-head" src="{{item.imageurl}}" background-size="cover"></image>
+      </view>
+      <view class="name flex-item">
+        <text class="follow-name">{{item.username}}</text>
+      </view>
+    </view>
+  </block>
+</view>

@@ -5,15 +5,50 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    follow: {},
+    token: {},
+    httpUrl:"http://localhost:8080/"
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    var that =this
     wx.setNavigationBarTitle({
       title: '我的关注',
+    })
+    wx.getStorage({
+      key: 'token',
+      success (res) {
+        console.log("获取到的用户信息aa：",res.data)
+        that.setData({
+          token: res.data,
+        })
+        wx.request({
+          url: that.data.httpUrl+'follow/getFollower',
+          data: {
+            user_id: that.data.token.id,
+          },
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success (res) {
+            if(res.data.code==0){  //说明请求成功，把返回的数据，设置给data
+              console.log("获取到的用户关注信息",res.data)
+              console.log(that.data.token.id)
+              that.setData({
+                follow: res.data.data
+              })
+            }else{  //失败  提示   失败原因
+              console.log("用户关注获取失败")
+            }
+          }
+        })
+      },
+      fail (res) {
+        console.log("未登录")
+      }
     })
   },
 

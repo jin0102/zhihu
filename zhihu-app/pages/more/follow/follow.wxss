@@ -1,1 +1,29 @@
 /* pages/more/follow/follow.wxss */
+.wapper{
+  height: 100%;
+  width: 100%;
+}
+
+.follow-item{
+  width: 100%;
+  margin-top: 20rpx;
+}
+
+.follow-head{
+  flex: 1;
+  display: inline-block;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 80rpx;
+}
+
+.name{
+  flex: 5;
+  text-align: left;
+}
+
+.follow-name{
+  padding: 8rpx 0 10rpx 0;
+  font-size: 30rpx;
+  color: #818A8F;
+}
