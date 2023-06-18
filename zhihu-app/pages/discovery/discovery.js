@@ -70,7 +70,7 @@ Page({
             'content-type': 'application/json' // 默认值
           },
           success (res) {
-            console.log("获取项目信息",res.data)
+            console.log("获取关注项目信息",res.data)
             if(res.data.code==0){  //说明请求成功，把返回的数据，设置给data
               that.setData({
                 folansData:res.data.data

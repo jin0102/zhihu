@@ -21,9 +21,9 @@
                             ON ans.question_id = qus.id
                  INNER JOIN user
                             ON ans.user_id = user.id
-                 INNER JOIN follow fol
-                            ON fol.follower_id = user.id
-        WHERE fol.user_id = #{user_id}
+                 INNER JOIN followque fq
+                            ON fq.question_id = qus.id
+        WHERE fq.user_id = #{user_id}
     </select>
 
     <select id="getHotAnswerInfos" resultType="AnswerBean">
