@@ -1,11 +1,11 @@
-// pages/more/follow/follow.js
+// pages/chat/message/message.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    follow: {},
+    message: {},
     token: {},
     httpUrl:"http://localhost:8080/"
   },
@@ -14,7 +14,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    var that =this
+    var that = this
     wx.getStorage({
       key: 'token',
       success (res) {
@@ -22,25 +22,8 @@ Page({
         that.setData({
           token: res.data,
         })
-        wx.request({
-          url: that.data.httpUrl+'follow/getFollower',
-          data: {
-            user_id: that.data.token.id,
-          },
-          header: {
-            'content-type': 'application/json' // 默认值
-          },
-          success (res) {
-            if(res.data.code==0){  //说明请求成功，把返回的数据，设置给data
-              console.log("获取到的用户关注信息",res.data)
-              console.log(that.data.token.id)
-              that.setData({
-                follow: res.data.data
-              })
-            }else{  //失败  提示   失败原因
-              console.log("用户关注获取失败")
-            }
-          }
+        wx.setNavigationBarTitle({
+          title: that.data.token.username,
         })
       },
       fail (res) {

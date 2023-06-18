@@ -63,5 +63,10 @@ Page({
       //收起键盘
       wx.hideKeyboard()
     }
+  },
+  toMessage: function () {
+    wx.navigateTo({
+      url: 'message/message',
+    })
   }
 })
