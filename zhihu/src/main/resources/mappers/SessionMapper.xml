@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--namespace = 所需实现的接口全限定名-->
+<mapper namespace="cn.edu.huas.zhihu.mapper.SessionMapper">
+    <select id="getSessionInfos" resultType="Session">
+        select *
+        from session
+        where user1_id = #{id}
+        or user2_id = #{id}
+    </select>
+</mapper>

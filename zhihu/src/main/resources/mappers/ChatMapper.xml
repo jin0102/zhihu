@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--namespace = 所需实现的接口全限定名-->
+<mapper namespace="cn.edu.huas.zhihu.mapper.ChatMapper">
+    <select id="getChatMessage" resultType="Chat">
+        select *
+        from chat
+        where (send_user_id = #{send_user_id}
+        and receive_user_id = #{receive_user_id})
+        or (send_user_id = #{receive_user_id}
+        and receive_user_id = #{send_user_id})
+    </select>
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*)
+        from chat
+        where (send_user_id = #{send_user_id}
+        and receive_user_id = #{receive_user_id})
+        or (send_user_id = #{receive_user_id}
+        and receive_user_id = #{send_user_id})
+    </select>
+</mapper>
