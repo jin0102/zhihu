@@ -14,13 +14,21 @@ Page({
   },
   //事件处理函数
   bindItemTap: function(event) {
-    console.log(event)
     console.log("啊啊啊啊啊啊啊啊啊啊啊啊啊",event.currentTarget.dataset.aid)
     var aid=event.currentTarget.dataset.aid
     wx.navigateTo({
       url: '../answer/answer?id='+aid
     })
   },
+
+  createans: function(event){
+    console.log("啊啊啊啊啊啊啊啊啊啊啊啊啊",event.currentTarget.dataset.qid)
+    var qid = event.currentTarget.dataset.qid
+    wx.navigateTo({
+      url: '../createans/createans?id='+qid
+    })
+  },
+
   clickOn:function(event){
     let value = this.data.isChecked;
     if(value){

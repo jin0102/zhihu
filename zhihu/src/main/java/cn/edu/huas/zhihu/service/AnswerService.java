@@ -1,5 +1,6 @@
 package cn.edu.huas.zhihu.service;
 
+import cn.edu.huas.zhihu.pojo.Answer;
 import cn.edu.huas.zhihu.vo.ResultVo;
 
 /**
@@ -14,4 +15,6 @@ public interface AnswerService {
     ResultVo getCollectAnswerInfos(int page, int limit , int user_id);
     ResultVo getSelectAnswerInfos(int page, int limit , int question_id);
     ResultVo getSpecificAnswerInfos(int answer_id);
+    ResultVo createAnswer(Answer answer);
+
 }

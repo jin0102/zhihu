@@ -22,5 +22,7 @@ public class SelectAnswer {
     private String answer_ctnt;
     private Long good;
     private Long answer_comment;
-    private Date date;
+    private Date answer_time;
+
+    private String describe;
 }

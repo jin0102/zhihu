@@ -1,0 +1,79 @@
+/* pages/createans/createans.wxss */
+
+.container {
+  padding: 0;
+  font-size: 14rpx;
+  background: #060707;
+  color: #000;
+}
+
+.question {
+  position: relative;
+  width: 650rpx;
+  padding: 40rpx 50rpx 30rpx;
+  background: #298DE5;
+  color: #fff;
+  font-size: 38rpx;
+  line-height: 48rpx;
+}
+
+.answer-content{
+  padding: 30rpx 40rpx;
+  background: #ffffff;
+}
+
+
+.currentWordNumber {
+  position: absolute;
+  bottom: 24rpx;
+  right: 26rpx;
+  color: #888;
+}
+
+.answer-footer{
+  position: fixed;
+  bottom: 0;
+  height: 90rpx;
+  border-top: solid 1px #ebebeb;
+  background: #ffffff;
+  width: 670rpx;
+  padding: 20rpx 40rpx;
+}
+
+.buttonText{
+  font-size: 28rpx;
+  color: #ffffff;
+  line-height: 9rpx;
+}
+
+.inputans{
+  
+    width: 100%;
+    min-height: 1100rpx;
+    max-height: 400rpx;
+    line-height: 50rpx;
+    background-color: #ffffff;
+    font-size: 35rpx;
+    font-family: PingFang SC;
+    font-weight: 400;
+    /* padding: 20rpx 0; */
+    padding: 20rpx;
+    box-sizing: border-box;
+    /* line-height: 60rpx; */
+    color: #2B2B36;
+    position: relative;
+    margin-top: 15rpx;
+  
+}
+
+.button {
+  background-color: #1E90FF;
+	width: 70%;
+	height: 30px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+  justify-content: center;
+  margin-left: 15%;
+  
+}

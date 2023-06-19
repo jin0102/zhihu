@@ -12,8 +12,10 @@ import java.util.Date;
 @NoArgsConstructor
 @ToString
 public class Question {
+
     private Long id;
     private String question_text;
     private Long user_id;
     private Long comment_num;
+
 }
