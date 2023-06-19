@@ -1,5 +1,5 @@
 <!--pages/start/start.wxml-->
 <view class="start">
   <text class="start-zhihu">知乎</text>
-  <button style="width:70%" bindtap="getUserProfile">授权登录</button>
+  <button style="width:70%" bindtap="getUserProfile"><text style="color: white;font-weight: bold;">授权登录</text></button>
 </view>

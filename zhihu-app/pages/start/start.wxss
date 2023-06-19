@@ -19,10 +19,11 @@ page,.start{
 }
 
 button{
+
   position: absolute;
   bottom: 20%;
   left: 15%;
   width: 80%;
-  background-color: rgb(19, 134, 201);
+  background-color: rgb(83, 200, 247);
  
 }
