@@ -5,10 +5,39 @@
 
 <!--namespace = 所需实现的接口全限定名-->
 <mapper namespace="cn.edu.huas.zhihu.mapper.SessionMapper">
-    <select id="getSessionInfos" resultType="Session">
-        select *
-        from session
-        where user1_id = #{id}
-        or user2_id = #{id}
+    <select id="getSessionInfos" resultType="SesUserBean">
+        SELECT
+            `session`.id,
+            `session`.user1_id,
+            `session`.user2_id,
+            `user`.username,
+            `user`.imageurl,
+            chat.content,
+            chat.send_time
+        FROM
+            `user`
+                INNER JOIN
+            `session`
+            ON
+                `user`.id = `session`.user2_id
+                INNER JOIN
+            chat
+            ON
+                            `session`.user1_id = chat.send_user_id AND
+                            `session`.user2_id = chat.receive_user_id OR
+                            `session`.user1_id = chat.receive_user_id AND
+                            `session`.user2_id = chat.send_user_id
+        WHERE
+            `session`.user1_id = 1
+          AND chat.send_time = (SELECT MAX(ch.send_time)
+                                FROM chat ch
+                                WHERE `session`.user1_id = ch.send_user_id AND
+                                      `session`.user2_id = ch.receive_user_id OR
+                                            `session`.user1_id = ch.receive_user_id AND
+                                            `session`.user2_id = ch.send_user_id)
+        GROUP BY
+            `session`.id
+        ORDER BY
+            chat.send_time DESC
     </select>
 </mapper>

@@ -13,7 +13,7 @@
     </select>
     <insert id="userRegister" parameterType="User">
         insert into user
-        values (#{id}, #{username}, #{phone}, #{password}, #{imageurl})
+        values (#{id}, #{username}, #{phone}, #{password}, #{imageurl}, #{describe})
     </insert>
     <select id="queryByPhone" resultType="User">
         select *

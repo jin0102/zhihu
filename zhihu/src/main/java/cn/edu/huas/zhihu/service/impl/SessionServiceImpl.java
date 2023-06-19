@@ -1,7 +1,7 @@
 package cn.edu.huas.zhihu.service.impl;
 
 import cn.edu.huas.zhihu.mapper.SessionMapper;
-import cn.edu.huas.zhihu.pojo.Session;
+import cn.edu.huas.zhihu.pojo.SesUserBean;
 import cn.edu.huas.zhihu.pojo.User;
 import cn.edu.huas.zhihu.service.SessionService;
 import cn.edu.huas.zhihu.vo.ResultVo;
@@ -17,8 +17,9 @@ public class SessionServiceImpl implements SessionService {
 	private SessionMapper sessionMapper;
 
 	@Override
-	public ResultVo getSessionInfos(User user) {
-		List<Session> sessionList = sessionMapper.getSessionInfos(user);
+	public ResultVo getSessionInfos(Integer id) {
+		List<SesUserBean> sessionList = sessionMapper.getSessionInfos(id);
+		System.out.println(sessionList.toString());
 		return ResultVo.getSuccessVo("success", sessionList);
 	}
 }

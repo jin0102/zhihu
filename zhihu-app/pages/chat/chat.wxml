@@ -1,15 +1,15 @@
 <view class="container chat">
-  <block wx:for="{{postData}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" wx:for-index="idx">
+  <block wx:for="{{session}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" wx:for-index="idx">
     <view class="chat-item flex-wrp" bindtap="toMessage">
       <view class="avatar flex-item">
-        <image src="{{item.feed_source_img}}"></image>
+        <image src="{{item.imageurl}}" background-size="cover"></image>
       </view>
       <view class="chat-content flex-item">
         <view class="chat-source">
-          <text class="chatmate">{{item.feed_source_name}}</text>
-          <text class="lasttime">{{item.comment_num}} 个月前</text>
+          <text class="chatmate">{{item.username}}</text>
+          <text class="lasttime">{{item.send_time}}</text>
         </view>
-        <text class="chat-txt">你好~ 你好~ 你好~</text>
+        <text class="chat-txt">{{item.content}}</text>
       </view>
     </view>
   </block>

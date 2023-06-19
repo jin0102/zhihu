@@ -15,8 +15,8 @@ public class SessionController {
 	private SessionService sessionService;
 
 	@RequestMapping("/getSessionInfos")
-	public ResultVo getSessionInfos (User user) {
-		return sessionService.getSessionInfos(user);
+	public ResultVo getSessionInfos (Integer id) {
+		return sessionService.getSessionInfos(id);
 	}
 
 }

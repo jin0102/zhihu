@@ -7,7 +7,7 @@ var app = getApp();
 //    logs: []
 //  },
 //  onLoad: function () {
-//    this.setData({
+//    that.setData({
 //      logs: (wx.getStorageSync('logs') || []).map(function (log) {
 //        return util.formatTime(new Date(log))
 //      })
@@ -18,24 +18,59 @@ var app = getApp();
 Page({
   data: {
     focus: false,
-    inputValue: ''
+    inputValue: '',
+    session: {},
+    httpUrl:"http://localhost:8080/"
   },
   onLoad: function (option) {
+    var that = this
     var postData =postsData.index.data;
+    wx.getStorage({
+      key: 'token',
+      success (res) {
+        console.log("获取到的用户信息chat：",res.data)
+        that.setData({
+          token: res.data,
+        })
+        wx.request({
+          url: that.data.httpUrl + 'session/getSessionInfos',
+          data: {
+            id: that.data.token.id,
+          },
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success (res) {
+            if(res.data.code==0){  //说明请求成功，把返回的数据，设置给data
+              console.log("获取到的会话列表",res.data)
+              console.log(that.data.token.id)
+              that.setData({
+                session: res.data.data
+              })
+            }else{  //失败  提示   失败原因
+              console.log("会话列表获取失败")
+            }
+          }
+        })
+      },
+      fail (res) {
+        console.log("未登录")
+      }
+    })
     
     postData = postData.slice(0,3);
     console.log(postData)
-    this.setData({
+    that.setData({
       postData: postData
     })
   },
   bindButtonTap: function() {
-    this.setData({
+    that.setData({
       focus: Date.now()
     })
   },
   bindKeyInput: function(e) {
-    this.setData({
+    that.setData({
       inputValue: e.detail.value
     })
   },
