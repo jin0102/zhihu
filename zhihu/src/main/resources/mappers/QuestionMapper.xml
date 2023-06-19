@@ -5,8 +5,15 @@
 
 <!--namespace = 所需实现的接口全限定名-->
 <mapper namespace="cn.edu.huas.zhihu.mapper.QuestionMapper">
+
     <select id="getQuestionInfos" resultType="Question">
         select *
+        from question qus
+        where qus.id = #{question_id}
+    </select>
+
+    <select id="queryTotal" resultType="java.lang.Integer">
+        select count(*)
         from question
     </select>
 </mapper>

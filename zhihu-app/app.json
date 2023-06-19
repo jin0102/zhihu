@@ -13,7 +13,8 @@
     "pages/more/collection/collection",
     "pages/more/login/login",
     "pages/more/register/register",
-    "pages/chat/message/message"
+    "pages/chat/message/message",
+    "pages/createans/createans"
   ],
   "window": {
     "backgroundTextStyle": "light",

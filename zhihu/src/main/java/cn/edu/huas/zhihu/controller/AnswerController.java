@@ -1,5 +1,6 @@
 package cn.edu.huas.zhihu.controller;
 
+import cn.edu.huas.zhihu.pojo.Answer;
 import cn.edu.huas.zhihu.service.AnswerService;
 import cn.edu.huas.zhihu.vo.ResultVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,4 +47,11 @@ public class AnswerController {
 
         return answerService.getSpecificAnswerInfos(answer_id);
     }
+
+    @RequestMapping("/createAnswer")
+    public ResultVo createOrder(Answer answer){
+
+        return answerService.createAnswer(answer);
+    }
+
 }

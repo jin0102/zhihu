@@ -49,7 +49,7 @@
     </select>
 
     <select id="getSelectAnswerInfos" resultType="SelectAnswer">
-        select ans.id,ans.answer_ctnt,ans.user_id,ans.question_id,ans.good,ans.answer_comment,ans.answer_date,qus.question_text,user.username,user.imageurl
+        select ans.id,ans.answer_ctnt,ans.user_id,ans.question_id,ans.good,ans.answer_comment,ans.answer_time,qus.question_text,user.username,user.imageurl
         FROM answer ans
                  INNER JOIN question qus
                             ON ans.question_id = qus.id
@@ -59,7 +59,7 @@
     </select>
 
     <select id="getSpecificAnswerInfos" resultType="SelectAnswer">
-        select ans.id,ans.answer_ctnt,ans.user_id,ans.question_id,ans.good,ans.answer_comment,ans.answer_date,qus.question_text,user.username,user.imageurl
+        select ans.id,ans.answer_ctnt,ans.user_id,ans.question_id,ans.good,ans.answer_comment,ans.answer_time,qus.question_text,user.username,user.imageurl,user.describe
         FROM answer ans
                  INNER JOIN question qus
                             ON ans.question_id = qus.id
@@ -67,6 +67,11 @@
                             ON ans.user_id = user.id
         WHERE ans.id = #{answer_id}
     </select>
+
+    <insert id="createAnswer" parameterType="Answer" >
+        insert into answer
+        values (#{id}, #{answer_ctnt}, #{answer_time}, #{user_id}, #{question_id}, #{good}, #{answer_comment})
+    </insert>
 
 
     <select id="queryTotal" resultType="java.lang.Integer">

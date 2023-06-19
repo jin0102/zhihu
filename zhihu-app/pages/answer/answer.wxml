@@ -15,7 +15,7 @@
             </view>
             <view class="answerer-info flex-item">
                 <text class="answerer-name">{{speansData.username}}</text>
-                <text class="answerer-des">WEB前端*不靠谱天气预报员*想做代码小仙女</text>
+                <text class="answerer-des">{{speansData.describe}}</text>
             </view>
             <view  class="{{isChecked?'follow_click flex-item':'follow flex-item'}}" bindtap="clickOn">
                 <text>十 关注</text>

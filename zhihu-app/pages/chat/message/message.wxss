@@ -72,6 +72,14 @@
 	justify-content: center;
 	margin-left: 20rpx;
 }
+
+
+.currentWordNumber {
+  position: absolute;
+  bottom: 24rpx;
+  right: 26rpx;
+  color: #888;
+}
  
 .buttonText {
 	font-size: 14px;

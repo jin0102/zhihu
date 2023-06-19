@@ -1,0 +1,27 @@
+<!--pages/createans/createans.wxml-->
+<view class="container">
+
+  <view class="question" bindtap="toQuestion" data-qid="{{speansData.question_id}}">
+    <text class="question-title">{{qusData.question_text}}</text>
+  </view>
+
+  
+
+  <view class="answer-footer flex-wrp">
+    <view class="button" bindtap="clicksub">
+      <text class="buttonText">发布</text>
+    </view>
+
+  </view>
+
+</view>
+<view class="createans">
+  <textarea placeholder="请输入你的回答..." placeholder-class="texts" placeholder-style="color:#333"
+  maxlength="1000"  class = "inputans" bindinput="inputeExplain">
+
+  <text class="currentWordNumber">{{currentWordNumber|0}}/255</text>
+
+  </textarea>
+  
+
+</view>

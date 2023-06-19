@@ -10,16 +10,14 @@
                 <text class="tag">文学</text>
             </view>
 
-            <block >
-                <view class="que-title"  bindtap="bindQueTap" data-qid="{{item.question_id}}">
+            <block>
+                <view class="que-title"  >
                         <text>{{selansData[0].question_text}}</text>
                 </view>
             </block>
           
             
-            <view class="que-content">
-                WEB前端*不靠谱天气预报员*想做代码小仙女
-            </view>
+
             <view class="que-follow">
                 <view class="left">
                     <view class="watch">
@@ -42,7 +40,7 @@
                 <image src="../../images/invite.png"></image>
                 <text>邀请回答</text>
             </view>
-            <view class="write flex-item">
+            <view class="write flex-item" bindtap="createans" data-qid="{{selansData[0].question_id}}">
                 <image src="../../images/write.png"></image>
                 <text>写回答</text>
             </view>
@@ -72,7 +70,7 @@
               <view class="comments dot">
                 <a>{{item.answer_comment}} 评论 </a>
               </view>
-              <view class="time">
+              <view class="time" >
                 <a>2 个月前</a>
               </view>
             </view>
