@@ -12,4 +12,6 @@ public interface AnswerService {
     ResultVo getFollowAnswerInfos(int page, int limit , int user_id);
     ResultVo getHotAnswerInfos(int page, int limit);
     ResultVo getCollectAnswerInfos(int page, int limit , int user_id);
+    ResultVo getSelectAnswerInfos(int page, int limit , int question_id);
+    ResultVo getSpecificAnswerInfos(int answer_id);
 }

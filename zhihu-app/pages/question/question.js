@@ -7,15 +7,18 @@ Page({
   data: {
     motto: '知乎--微信小程序版',
     userInfo: {},
-    isChecked: false
+    page: 1,
+    isChecked: false,
+    selansData:[],
+    httpUrl:"http://localhost:8080/"
   },
   //事件处理函数
   bindItemTap: function(event) {
     console.log(event)
-    console.log(event.currentTarget.dataset.qid)
-    var qid=event.currentTarget.dataset.qid
+    console.log("啊啊啊啊啊啊啊啊啊啊啊啊啊",event.currentTarget.dataset.aid)
+    var aid=event.currentTarget.dataset.aid
     wx.navigateTo({
-      url: '../answer/answer?id='+qid
+      url: '../answer/answer?id='+aid
     })
   },
   clickOn:function(event){
@@ -43,25 +46,33 @@ Page({
     console.log(value)
   },
   onLoad: function (option) {
-    console.log('onLoad---------------=========-------------'+option.id)
-    var id = option.id;
-    var AllpostData=postsData.index.data;
-    console.log(AllpostData)
-    var postData =postsData.index.data[parseInt(id)-1];
-    console.log(postData)
-    this.setData({
-      AllpostData:AllpostData,
-        postData: postData
-    })
+    
     console.log('onLoad')
     var that = this
+    console.log('onLoad',that.data)
     //调用应用实例的方法获取全局数据
-    app.getUserInfo(function(userInfo){
-      //更新数据
-      that.setData({
-        userInfo:userInfo
-      })
+    wx.request({
+      url: that.data.httpUrl+'answer/getSelectAnswerInfos', //接收
+      data: {
+        page: that.data.page,
+        limit: 10,
+        question_id: option.id
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success (res) {
+        console.log("获取sel项目信息",res.data)
+        if(res.data.code==0){  //说明请求成功，把返回的数据，设置给data
+          that.setData({
+            selansData:res.data.data
+          })
+        }else{  //失败  提示   失败原因
+
+        }
+      }
     })
+    
   },
   tapName: function(event){
     console.log(event)

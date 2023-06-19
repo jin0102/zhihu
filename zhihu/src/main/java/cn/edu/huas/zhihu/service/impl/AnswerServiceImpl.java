@@ -1,6 +1,8 @@
 package cn.edu.huas.zhihu.service.impl;
 
 import cn.edu.huas.zhihu.pojo.AnswerBean;
+import cn.edu.huas.zhihu.pojo.Question;
+import cn.edu.huas.zhihu.pojo.SelectAnswer;
 import cn.edu.huas.zhihu.vo.ResultVo;
 import cn.edu.huas.zhihu.pojo.Answer;
 import cn.edu.huas.zhihu.service.AnswerService;
@@ -52,6 +54,23 @@ public class AnswerServiceImpl implements AnswerService{
         Integer count = answerMapper.queryTotal();
         return ResultVo.getSuccessVo("success",collectanswerinfos,count);
     }
+
+    @Override
+    public ResultVo getSelectAnswerInfos(int page, int limit, int question_id) {
+        PageHelper.startPage(page,limit);
+        List<SelectAnswer> selectanswerinfos = answerMapper.getSelectAnswerInfos(question_id);
+        Integer count = answerMapper.queryTotal();
+        return ResultVo.getSuccessVo("success",selectanswerinfos,count);
+    }
+
+    @Override
+    public ResultVo getSpecificAnswerInfos(int answer_id) {
+        SelectAnswer specificanswerinfos = answerMapper.getSpecificAnswerInfos(answer_id);
+        Integer count = 1;
+        return ResultVo.getSuccessVo("success",specificanswerinfos,count);
+    }
+
+
 }
 
 

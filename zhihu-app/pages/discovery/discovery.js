@@ -108,6 +108,89 @@ Page({
 
     
   },
+  onShow: function () {
+    var that = this
+    //调用应用实例的方法获取全局数据
+
+    wx.request({
+      url: that.data.httpUrl+'answer/getHotAnswerInfos', //接收热门回答
+      data: {
+        page: that.data.page,
+        limit: 10,
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success (res) {
+        console.log("获取hot项目信息",res.data)
+        if(res.data.code==0){  //说明请求成功，把返回的数据，设置给data
+          that.setData({
+            hotansData:res.data.data
+          })
+        }else{  //失败  提示   失败原因
+
+        }
+      }
+    })
+
+    wx.getStorage({
+      key: 'token',
+      success (res) {
+        that.setData(
+          {
+            token: res.data,
+          },
+        ) 
+        console.log("token信息",res.data);//token信息
+        console.log("id信息",that.data.token.id)
+        wx.request({
+          url: that.data.httpUrl+'answer/getFollowAnswerInfos', //接收关注回答
+          data: {
+            page: that.data.page,
+            limit: 10,
+            user_id:that.data.token.id
+          },
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success (res) {
+            console.log("获取关注项目信息",res.data)
+            if(res.data.code==0){  //说明请求成功，把返回的数据，设置给data
+              that.setData({
+                folansData:res.data.data
+              })
+            }else{  //失败  提示   失败原因
+    
+            }
+          }
+        })
+
+        wx.request({
+          url: that.data.httpUrl+'answer/getCollectAnswerInfos', //接收收藏回答
+          data: {
+            page: that.data.page,
+            limit: 10,
+            user_id:that.data.token.id
+          },
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success (res) {
+            console.log("获取col项目信息",res.data)
+            if(res.data.code==0){  //说明请求成功，把返回的数据，设置给data
+              that.setData({
+                colansData:res.data.data
+              })
+            }else{  //失败  提示   失败原因
+
+            }
+          }
+        })
+            },  
+            
+    })
+  },
+
   switchTab: function(e){
     this.setData({
       currentNavtab: e.currentTarget.dataset.idx
@@ -116,10 +199,10 @@ Page({
 
   bindItemTap: function(event) {
     console.log(event+'---------------333333-----------------------------------------o--0')
-    console.log(event.currentTarget.dataset.qid)
-    var qid=event.currentTarget.dataset.qid
+    console.log(event.currentTarget.dataset.aid)
+    var aid=event.currentTarget.dataset.aid
     wx.navigateTo({
-      url: '../answer/answer?id='+qid
+      url: '../answer/answer?id='+aid
     })
   },
   bindQueTap: function(event) {
