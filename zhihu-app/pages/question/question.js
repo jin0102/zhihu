@@ -7,7 +7,7 @@ Page({
   data: {
     motto: '知乎--微信小程序版',
     userInfo: {},
-    page:1,
+    page: 1,
     isChecked: false,
     selansData:[],
     httpUrl:"http://localhost:8080/"

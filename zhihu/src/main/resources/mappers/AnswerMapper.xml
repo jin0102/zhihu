@@ -58,6 +58,16 @@
         WHERE ans.question_id = #{question_id}
     </select>
 
+    <select id="getSpecificAnswerInfos" resultType="SelectAnswer">
+        select ans.id,ans.answer_ctnt,ans.user_id,ans.question_id,ans.good,ans.answer_comment,ans.answer_date,qus.question_text,user.username,user.imageurl
+        FROM answer ans
+                 INNER JOIN question qus
+                            ON ans.question_id = qus.id
+                 INNER JOIN user
+                            ON ans.user_id = user.id
+        WHERE ans.id = #{answer_id}
+    </select>
+
 
     <select id="queryTotal" resultType="java.lang.Integer">
         select count(*)

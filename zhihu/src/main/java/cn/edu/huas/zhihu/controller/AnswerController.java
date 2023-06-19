@@ -40,4 +40,10 @@ public class AnswerController {
 
         return answerService.getSelectAnswerInfos(page,limit,question_id);
     }
+
+    @RequestMapping("/getSpecificAnswerInfos")
+    public ResultVo getSpecificAnswerInfos(int answer_id){
+
+        return answerService.getSpecificAnswerInfos(answer_id);
+    }
 }

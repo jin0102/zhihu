@@ -63,6 +63,13 @@ public class AnswerServiceImpl implements AnswerService{
         return ResultVo.getSuccessVo("success",selectanswerinfos,count);
     }
 
+    @Override
+    public ResultVo getSpecificAnswerInfos(int answer_id) {
+        SelectAnswer specificanswerinfos = answerMapper.getSpecificAnswerInfos(answer_id);
+        Integer count = 1;
+        return ResultVo.getSuccessVo("success",specificanswerinfos,count);
+    }
+
 
 }
 

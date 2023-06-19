@@ -14,7 +14,9 @@ public interface AnswerMapper {
     List<AnswerBean> getHotAnswerInfos();
     List<AnswerBean> getCollectAnswerInfos(int user_id);
     List<SelectAnswer> getSelectAnswerInfos(int question_id);
+    SelectAnswer getSpecificAnswerInfos(int answer_id);
     Integer queryTotal();
+
 }
 
 
