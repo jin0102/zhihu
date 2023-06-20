@@ -2,19 +2,19 @@
 <view class="root">
   <scroll-view class="sv" scroll-y scroll-into-view="{{toBottom}}">
 
-    <view class="box" wx:for="{{content}}" id="item{{index}}">
-      <view class="item" wx:if="{{item.id == 1}}">
-        <image src="{{mineAvatorSrc}}" class="mineAvatorSrc"></image>
+    <view class="box" wx:for="{{message}}" id="item{{index}}">
+      <view class="item" wx:if="{{item.send_user_id == receiveid}}">
+        <image src="{{item.imageurl}}" class="mineAvatorSrc"></image>
         <view class="mineTextBox">
-          <text class="mineText">{{item.text}}</text>
+          <text class="mineText">{{item.content}}</text>
         </view>
       </view>
 
-      <view class="item" wx:if="{{item.id == 0}}">
+      <view class="item" wx:if="{{item.send_user_id == sendid}}">
         <view class="himTextBox">
-          <text class="himText">{{item.text}}</text>
+          <text class="himText">{{item.content}}</text>
         </view>
-        <image src="{{himAvatorSrc}}" class="himAvatorSrc"></image>
+        <image src="{{item.imageurl}}" class="himAvatorSrc"></image>
       </view>
     </view>
 

@@ -5,6 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    sendid: null,
+    receiveid: null,
     message: {},
     token: {},
     httpUrl:"http://localhost:8080/"
@@ -15,12 +17,18 @@ Page({
    */
   onLoad(options) {
     var that = this
+    console.log("message1:",options.sendid)
+    console.log("message2:",options.receiveid)
+    that.setData({
+      sendid: options.sendid,
+      receiveid: options.receiveid
+    })
     wx.getStorage({
       key: 'token',
       success (res) {
         console.log("获取到的用户信息aa：",res.data)
         that.setData({
-          token: res.data,
+          token: res.data
         })
         wx.setNavigationBarTitle({
           title: that.data.token.username,
@@ -28,6 +36,22 @@ Page({
       },
       fail (res) {
         console.log("未登录")
+      }
+    })
+    wx.request({
+      url: that.data.httpUrl+'chat/getChatMessage',
+      data: {
+        send_user_id: options.sendid,
+        receive_user_id: options.receiveid
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success (res) {
+        console.log("message数据：",res.data.data)
+        that.setData({
+          message: res.data.data
+        })
       }
     })
   },

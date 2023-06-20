@@ -99,9 +99,12 @@ Page({
       wx.hideKeyboard()
     }
   },
-  toMessage: function () {
+  toMessage: function (event) {
+    console.log("点击点击点击",event)
+    console.log("测试",event.currentTarget.dataset.sendid)
+    console.log("测试",event.currentTarget.dataset.receiveid)
     wx.navigateTo({
-      url: 'message/message',
+      url: 'message/message?sendid='+event.currentTarget.dataset.sendid+'&receiveid='+event.currentTarget.dataset.receiveid,
     })
   }
 })

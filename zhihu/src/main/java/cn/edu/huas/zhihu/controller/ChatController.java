@@ -14,9 +14,9 @@ public class ChatController {
 	@Autowired
 	private ChatService chatService;
 
-	@RequestMapping("")
-	public ResultVo getChatMessage (Chat chat, Integer page, Integer limit) {
-		return chatService.getChatMessage(chat, page, limit);
+	@RequestMapping("/getChatMessage")
+	public ResultVo getChatMessage (Chat chat) {
+		return chatService.getChatMessage(chat);
 	}
 
 }

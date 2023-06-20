@@ -28,15 +28,13 @@
                             `session`.user1_id = chat.receive_user_id AND
                             `session`.user2_id = chat.send_user_id
         WHERE
-            `session`.user1_id = 1
+            `session`.user1_id = #{id}
           AND chat.send_time = (SELECT MAX(ch.send_time)
                                 FROM chat ch
                                 WHERE `session`.user1_id = ch.send_user_id AND
                                       `session`.user2_id = ch.receive_user_id OR
                                             `session`.user1_id = ch.receive_user_id AND
                                             `session`.user2_id = ch.send_user_id)
-        GROUP BY
-            `session`.id
         ORDER BY
             chat.send_time DESC
     </select>

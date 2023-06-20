@@ -1,6 +1,6 @@
 <view class="container chat">
   <block wx:for="{{session}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" wx:for-index="idx">
-    <view class="chat-item flex-wrp" bindtap="toMessage">
+    <view class="chat-item flex-wrp" bindtap="toMessage" data-sendid="{{item.user1_id}}" data-receiveid="{{item.user2_id}}">
       <view class="avatar flex-item">
         <image src="{{item.imageurl}}" background-size="cover"></image>
       </view>

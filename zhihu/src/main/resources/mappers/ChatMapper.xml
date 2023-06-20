@@ -5,13 +5,16 @@
 
 <!--namespace = 所需实现的接口全限定名-->
 <mapper namespace="cn.edu.huas.zhihu.mapper.ChatMapper">
-    <select id="getChatMessage" resultType="Chat">
-        select *
-        from chat
-        where (send_user_id = #{send_user_id}
-        and receive_user_id = #{receive_user_id})
-        or (send_user_id = #{receive_user_id}
-        and receive_user_id = #{send_user_id})
+    <select id="getChatMessage" resultType="ChatBean">
+        select ch.*,us.imageurl
+        from chat ch
+        inner join user us
+        on ch.send_user_id = us.id
+        where (ch.send_user_id = #{send_user_id}
+        and ch.receive_user_id = #{receive_user_id})
+        or (ch.send_user_id = #{receive_user_id}
+        and ch.receive_user_id = #{send_user_id})
+        order by ch.send_time asc
     </select>
     <select id="getCount" resultType="java.lang.Integer">
         select count(*)
