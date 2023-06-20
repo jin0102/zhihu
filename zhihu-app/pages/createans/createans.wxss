@@ -23,13 +23,6 @@
 }
 
 
-.currentWordNumber {
-  position: absolute;
-  bottom: 24rpx;
-  right: 26rpx;
-  color: #888;
-}
-
 .answer-footer{
   position: fixed;
   bottom: 0;
@@ -38,6 +31,13 @@
   background: #ffffff;
   width: 670rpx;
   padding: 20rpx 40rpx;
+}
+
+.currentWordNumber {
+  position: absolute;
+  bottom: 24rpx;
+  right: 26rpx;
+  color: #888;
 }
 
 .buttonText{

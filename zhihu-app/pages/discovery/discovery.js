@@ -18,7 +18,7 @@ Page({
     feed_length: 0,
     page:1,
     hotansData:[],
-    folansData:[],
+    folqusData:[],
     colansData:[],
     httpUrl:"http://localhost:8080/",
     token:[],
@@ -144,7 +144,7 @@ Page({
         console.log("token信息",res.data);//token信息
         console.log("id信息",that.data.token.id)
         wx.request({
-          url: that.data.httpUrl+'answer/getFollowAnswerInfos', //接收关注回答
+          url: that.data.httpUrl+'question/getAllQuestionInfos', //接收关注回答
           data: {
             page: that.data.page,
             limit: 10,
@@ -154,10 +154,10 @@ Page({
             'content-type': 'application/json' // 默认值
           },
           success (res) {
-            console.log("获取关注项目信息",res.data)
+            console.log("获取关注问题信息",res.data)
             if(res.data.code==0){  //说明请求成功，把返回的数据，设置给data
               that.setData({
-                folansData:res.data.data
+                folqusData:res.data.data
               })
             }else{  //失败  提示   失败原因
     

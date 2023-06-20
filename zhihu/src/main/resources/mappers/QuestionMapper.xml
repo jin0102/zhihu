@@ -12,6 +12,16 @@
         where qus.id = #{question_id}
     </select>
 
+    <select id="getAllQuestionInfos" resultType="ShowQuestion">
+        select qus.id,qus.question_text,qus.user_id,qus.comment_num,user.username,user.imageurl
+        from question qus
+                 INNER JOIN user
+
+                 INNER JOIN followque fq
+                            ON fq.question_id = qus.id
+        WHERE user.id = #{user_id}
+    </select>
+
     <select id="queryTotal" resultType="java.lang.Integer">
         select count(*)
         from question

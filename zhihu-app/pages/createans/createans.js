@@ -8,10 +8,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    motto: '知乎--微信小程序版',
-    qusData:[],
-    httpUrl:"http://localhost:8080/",
-    page: 1
+    qusData: [],
+    httpUrl: "http://localhost:8080/",
+    page: 1,
+    ceshi:null,
+    creansData:[],
 
   },
 
@@ -62,10 +63,61 @@ Page({
    
 
   },
+  gettext: function(event){
+    this.setData({
+      ceshi:event.detail.value
+    })
+  },
 
   clicksub:function(event){
     var that = this;
-    console.log("ccccccc",that.data);
+    var qus_id = that.data.qusData.id
+    console.log("bbbbbb", qus_id);
+    wx.getStorage({
+      key: 'token',
+      success(res) {
+        that.setData({
+          token: res.data,
+        }, )
+        console.log("token信息", res.data); //token信息
+        console.log("id信息", that.data.token.id);
+        console.log("输入内容",that.data.ceshi)
+        wx.request({
+          url: that.data.httpUrl + 'answer/createAnswer', //接收收藏回答
+          data: {
+            answer_ctnt: that.data.ceshi,
+            user_id: that.data.token.id,
+            question_id: qus_id,
+            good: 0,
+            answer_comment: 0,
+          },
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success(res) {
+            console.log("得到的回答信息", res.data)
+            if (res.data.code == 0) { //说明请求成功，把返回的数据，设置给data
+              wx.showToast({
+                title: res.data.msg,
+                icon: 'success',
+                duration: 2000
+              })
+              wx.navigateTo({
+                url: '../question/question?id=' + qus_id
+              })
+            } else { //失败  提示   失败原因
+
+            }
+          }
+        })
+      },
+
+    })
+
+
+
+
+
   },
 
   inputeExplain(e) {

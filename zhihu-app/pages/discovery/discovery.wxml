@@ -55,7 +55,7 @@
 
 
   <view class="ctnt1 placehold" hidden="{{currentNavtab==1 ? '' : true}}">
-    <block wx:for="{{folansData}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
+    <block wx:for="{{folqusData}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
       <view class="feed-item">
         <view class="feed-source">
           <a class="">
@@ -66,19 +66,13 @@
           </a>
         </view>
         <view class="feed-content">
-          <view class="question"  bindtap="bindQueTap" data-qid="{{item.question_id}}">
+          <view class="question"  bindtap="bindQueTap" data-qid="{{item.id}}">
             <a class="question-link">
               <text>{{item.question_text}}</text>
             </a>
           </view>
           <view class="answer-body">
-            <view bindtap="bindItemTap" data-aid="{{item.id}}">
-              <text class="answer-txt" data-aid="{{item.id}}">{{item.answer_ctnt}}</text>
-            </view>
-            <view class="answer-actions" bindtap="bindItemTap" data-aid="{{item.id}}">
-              <view class="like dot">
-                <a>{{item.good}} 赞同 </a>
-              </view>
+            <view class="answer-actions" bindtap="bindQueTap" data-qid="{{item.id}}">
               <view class="comments dot">
                 <a>{{item.comment_num}} 评论 </a>
               </view>

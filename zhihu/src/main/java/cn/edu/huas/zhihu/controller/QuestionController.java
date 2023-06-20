@@ -18,4 +18,10 @@ public class QuestionController {
         return questionService.getQuestionInfos(question_id);
     }
 
+    @RequestMapping("/getAllQuestionInfos")
+    public ResultVo getAllQuestionInfos(int page, int limit,int user_id){
+
+        return questionService.getAllQuestionInfos(page,limit,user_id);
+    }
+
 }

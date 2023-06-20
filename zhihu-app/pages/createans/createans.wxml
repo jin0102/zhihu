@@ -1,7 +1,7 @@
 <!--pages/createans/createans.wxml-->
 <view class="container">
 
-  <view class="question" bindtap="toQuestion" data-qid="{{speansData.question_id}}">
+  <view class="question" bindtap="toQuestion" data-qid="{{qusData.id}}">
     <text class="question-title">{{qusData.question_text}}</text>
   </view>
 
@@ -17,7 +17,7 @@
 </view>
 <view class="createans">
   <textarea placeholder="请输入你的回答..." placeholder-class="texts" placeholder-style="color:#333"
-  maxlength="1000"  class = "inputans" bindinput="inputeExplain">
+  maxlength="1000"  class = "inputans" bindinput="inputeExplain" bindinput="gettext"  value="{{ceshi}}">
 
   <text class="currentWordNumber">{{currentWordNumber|0}}/255</text>
 
