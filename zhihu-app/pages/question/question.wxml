@@ -71,7 +71,7 @@
                 <a>{{item.answer_comment}} 评论 </a>
               </view>
               <view class="time" >
-                <a>2 个月前</a>
+                <a>{{item.answer_time}}</a>
               </view>
             </view>
           </view>

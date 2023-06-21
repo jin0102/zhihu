@@ -67,6 +67,21 @@ Page({
     this.setData({
       ceshi:event.detail.value
     })
+    var value = event.detail.value;
+    let dataset = event.currentTarget.dataset;
+    this.data[dataset.obj] = value;
+    var len = parseInt(value.length);
+    console.log("8888888",len)
+    if (len > this.data.maxAddr) return;
+    this.setData({
+      currentWordNumber: len
+    });
+    if (this.data.currentWordNumber == 255) {
+      wx.showModal({
+        title: '提示',
+        content: '您输入的次数已达上限',
+      })
+    }
   },
 
   clicksub:function(event){
@@ -86,10 +101,12 @@ Page({
           url: that.data.httpUrl + 'answer/createAnswer', //接收收藏回答
           data: {
             answer_ctnt: that.data.ceshi,
+            answer_time : util.formatTime(new Date()),
             user_id: that.data.token.id,
             question_id: qus_id,
             good: 0,
             answer_comment: 0,
+            
           },
           header: {
             'content-type': 'application/json' // 默认值
@@ -102,8 +119,8 @@ Page({
                 icon: 'success',
                 duration: 2000
               })
-              wx.navigateTo({
-                url: '../question/question?id=' + qus_id
+              
+              wx.navigateBack({delta: 1
               })
             } else { //失败  提示   失败原因
 
@@ -120,22 +137,6 @@ Page({
 
   },
 
-  inputeExplain(e) {
-    var value = e.detail.value;
-    let dataset = e.currentTarget.dataset;
-    this.data[dataset.obj] = value;
-    var len = parseInt(value.length);
-    if (len > this.data.maxAddr) return;
-    this.setData({
-      currentWordNumber: len
-    });
-    if (this.data.currentWordNumber == 255) {
-      wx.showModal({
-        title: '提示',
-        content: '您输入的次数已达上限',
-      })
-    }
-  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -147,6 +148,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+
 
   },
 

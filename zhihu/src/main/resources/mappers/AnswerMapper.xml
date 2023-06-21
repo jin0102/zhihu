@@ -6,7 +6,7 @@
 <!--namespace = 所需实现的接口全限定名-->
 <mapper namespace="cn.edu.huas.zhihu.mapper.AnswerMapper">
     <select id="getAnswerInfos" resultType="AnswerBean">
-    select ans.id,ans.answer_ctnt,ans.user_id,ans.question_id,ans.good,user.username,user.imageurl,qus.question_text,qus.comment_num
+    select ans.id,ans.answer_ctnt,ans.answer_time,ans.user_id,ans.question_id,ans.good,user.username,user.imageurl,qus.question_text,qus.comment_num
     FROM answer ans
              INNER JOIN question qus
                         ON ans.question_id = qus.id
@@ -15,7 +15,7 @@
     </select>
 
     <select id="getFollowAnswerInfos" resultType="AnswerBean">
-        select ans.id,ans.answer_ctnt,ans.user_id,ans.question_id,ans.good,user.username,user.imageurl,qus.question_text,qus.comment_num
+        select ans.id,ans.answer_ctnt,ans.answer_time,ans.user_id,ans.question_id,ans.good,user.username,user.imageurl,qus.question_text,qus.comment_num
         FROM answer ans
                  INNER JOIN question qus
                             ON ans.question_id = qus.id
@@ -27,7 +27,7 @@
     </select>
 
     <select id="getHotAnswerInfos" resultType="AnswerBean">
-        select ans.id,ans.answer_ctnt,ans.user_id,ans.question_id,ans.good,user.username,user.imageurl,qus.question_text,qus.comment_num
+        select ans.id,ans.answer_ctnt,ans.answer_time,ans.user_id,ans.question_id,ans.good,user.username,user.imageurl,qus.question_text,qus.comment_num
         FROM answer ans
                  INNER JOIN question qus
                             ON ans.question_id = qus.id
@@ -37,7 +37,7 @@
     </select>
 
     <select id="getCollectAnswerInfos" resultType="AnswerBean">
-        select ans.id,ans.answer_ctnt,ans.user_id,ans.question_id,ans.good,user.username,user.imageurl,qus.question_text,qus.comment_num
+        select ans.id,ans.answer_ctnt,ans.answer_time,ans.user_id,ans.question_id,ans.good,user.username,user.imageurl,qus.question_text,qus.comment_num
         FROM answer ans
                  INNER JOIN question qus
                             ON ans.question_id = qus.id
@@ -49,7 +49,7 @@
     </select>
 
     <select id="getSelectAnswerInfos" resultType="SelectAnswer">
-        select ans.id,ans.answer_ctnt,ans.user_id,ans.question_id,ans.good,ans.answer_comment,ans.answer_time,qus.question_text,user.username,user.imageurl
+        select ans.id,ans.answer_ctnt,ans.answer_time,ans.user_id,ans.question_id,ans.good,ans.answer_comment,ans.answer_time,qus.question_text,user.username,user.imageurl
         FROM answer ans
                  INNER JOIN question qus
                             ON ans.question_id = qus.id
@@ -59,7 +59,7 @@
     </select>
 
     <select id="getSpecificAnswerInfos" resultType="SelectAnswer">
-        select ans.id,ans.answer_ctnt,ans.user_id,ans.question_id,ans.good,ans.answer_comment,ans.answer_time,qus.question_text,user.username,user.imageurl,user.describe
+        select ans.id,ans.answer_ctnt,ans.answer_time,ans.user_id,ans.question_id,ans.good,ans.answer_comment,ans.answer_time,qus.question_text,user.username,user.imageurl,user.describe
         FROM answer ans
                  INNER JOIN question qus
                             ON ans.question_id = qus.id
