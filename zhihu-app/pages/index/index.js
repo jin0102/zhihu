@@ -102,7 +102,7 @@ Page({
     wx.request({
       url: that.data.httpUrl + 'answer/getAnswerInfos', //仅为示例，并非真实的接口地址
       data: {
-        page: that.data.page,
+        page: 1,
         limit: 10,
       },
       header: {
@@ -112,7 +112,8 @@ Page({
         console.log("获取项目信息", res.data)
         if (res.data.code == 0) { //说明请求成功，把返回的数据，设置给data
           that.setData({
-            ansData: res.data.data
+            ansData: res.data.data,
+            page:1
           })
         } else { //失败  提示   失败原因
 

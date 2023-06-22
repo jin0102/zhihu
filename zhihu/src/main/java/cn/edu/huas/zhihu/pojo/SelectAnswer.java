@@ -18,6 +18,7 @@ public class SelectAnswer {
 
     private Long question_id;
     private String question_text;
+    private Long user_id;
 
     private String answer_ctnt;
     private Long good;

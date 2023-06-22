@@ -1,6 +1,7 @@
 package cn.edu.huas.zhihu.service.impl;
 
 import cn.edu.huas.zhihu.mapper.FollowMapper;
+import cn.edu.huas.zhihu.pojo.Collect;
 import cn.edu.huas.zhihu.pojo.Follow;
 import cn.edu.huas.zhihu.pojo.User;
 import cn.edu.huas.zhihu.service.FollowService;
@@ -21,5 +22,10 @@ public class FollowServiceImpl implements FollowService {
 
 		List<User> userList = followMapper.getFollower(follow);
 		return ResultVo.getSuccessVo("success", userList);
+	}
+
+	public ResultVo createFollower(Follow follow) {
+		followMapper.createFollower(follow);
+		return ResultVo.getSuccessVo("success");
 	}
 }

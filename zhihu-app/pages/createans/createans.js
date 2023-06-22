@@ -63,6 +63,7 @@ Page({
    
 
   },
+  
   gettext: function(event){
     this.setData({
       ceshi:event.detail.value

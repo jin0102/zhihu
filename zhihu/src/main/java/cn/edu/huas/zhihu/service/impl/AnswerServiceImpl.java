@@ -20,7 +20,7 @@ import java.util.List;
 @Service
 public class AnswerServiceImpl implements AnswerService{
     @Autowired
-    AnswerMapper answerMapper;
+    private AnswerMapper answerMapper;
 
     @Override
     public ResultVo getAnswerInfos(int page, int limit) {

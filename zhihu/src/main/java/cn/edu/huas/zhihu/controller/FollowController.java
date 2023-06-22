@@ -1,5 +1,6 @@
 package cn.edu.huas.zhihu.controller;
 
+import cn.edu.huas.zhihu.pojo.Collect;
 import cn.edu.huas.zhihu.pojo.Follow;
 import cn.edu.huas.zhihu.service.FollowService;
 import cn.edu.huas.zhihu.vo.ResultVo;
@@ -17,5 +18,11 @@ public class FollowController {
 	@RequestMapping("getFollower")
 	public ResultVo getFollower(Follow follow) {
 		return followService.getFollower(follow);
+	}
+
+	@RequestMapping("/createFollower")
+	public ResultVo createFollower(Follow follow){
+
+		return followService.createFollower(follow);
 	}
 }

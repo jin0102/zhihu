@@ -22,7 +22,7 @@ Page({
     colansData: [],
     httpUrl: "http://localhost:8080/",
     token: [],
-    isData:true
+    isData: true
   },
   onLoad: function () {
     console.log('onLoad')
@@ -121,7 +121,7 @@ Page({
         wx.request({
           url: that.data.httpUrl + 'question/getAllQuestionInfos', //接收关注回答
           data: {
-            page: that.data.page,
+            page: 1,
             limit: 10,
             user_id: that.data.token.id
           },
@@ -132,7 +132,8 @@ Page({
             console.log("获取关注项目信息", res.data)
             if (res.data.code == 0) { //说明请求成功，把返回的数据，设置给data
               that.setData({
-                folqusData: res.data.data
+                folqusData: res.data.data,
+                page: 1
               })
             } else { //失败  提示   失败原因
 
@@ -143,7 +144,7 @@ Page({
         wx.request({
           url: that.data.httpUrl + 'answer/getCollectAnswerInfos', //接收收藏回答
           data: {
-            page: that.data.page,
+            page: 1,
             limit: 10,
             user_id: that.data.token.id
           },
@@ -154,7 +155,8 @@ Page({
             console.log("获取col项目信息", res.data)
             if (res.data.code == 0) { //说明请求成功，把返回的数据，设置给data
               that.setData({
-                colansData: res.data.data
+                colansData: res.data.data,
+                page: 1
               })
             } else { //失败  提示   失败原因
 
@@ -164,7 +166,7 @@ Page({
       },
 
     })
-    
+
   },
 
   lower: function () {
@@ -173,6 +175,77 @@ Page({
     if (that.data.isData) {
       that.data.page++;
       console.log("当前页面：", that.data.page);
+
+      wx.getStorage({
+        key: 'token',
+        success(res) {
+          that.setData({
+            token: res.data,
+          }, )
+          wx.request({
+            url: that.data.httpUrl + 'question/getAllQuestionInfos', //接收关注回答
+            data: {
+              page: that.data.page,
+              limit: 10,
+              user_id: that.data.token.id
+            },
+            header: {
+              'content-type': 'application/json' // 默认值
+            },
+            success(res) {
+              console.log("获取关注信息", res.data.data) //每次拿到的数据  应该和之前的数据进行拼接
+              console.log("获取关注信息2", that.data.folqusData)
+              var folqusList = [...that.data.folqusData, ...res.data.data]; //拼接之后的数据
+              var isData = true;
+              if (folqusList.length >= res.data.count) {
+                //说明没有数据  
+                isData = false
+              }
+              if (res.data.code == 0) { //说明请求成功，把返回的数据，设置给data
+                that.setData({
+                  folqusData: folqusList,
+                  isData: isData
+                })
+              } else { //失败  提示   失败原因
+
+              }
+            }
+          })
+
+          wx.request({
+            url: that.data.httpUrl + 'answer/getCollectAnswerInfos', //接收收藏回答
+            data: {
+              page: that.data.page,
+              limit: 10,
+              user_id: that.data.token.id
+            },
+            header: {
+              'content-type': 'application/json' // 默认值
+            },
+            success(res) {
+              console.log("获取收藏项目信息", res.data.data) //每次拿到的数据  应该和之前的数据进行拼接
+              console.log("获取收藏项目信息2", that.data.colansData)
+              var colansList = [...that.data.colansData, ...res.data.data]; //拼接之后的数据
+              var isData = true;
+              if (colansList.length >= res.data.count) {
+                //说明没有数据  
+                isData = false
+              }
+              if (res.data.code == 0) { //说明请求成功，把返回的数据，设置给data
+                that.setData({
+                  colansData: colansList,
+                  isData: isData
+                })
+              } else { //失败  提示   失败原因
+
+              }
+            }
+          })
+        },
+
+      })
+
+
       wx.request({
         url: that.data.httpUrl + 'answer/getHotAnswerInfos', //接收热门回答
         data: {
@@ -205,7 +278,7 @@ Page({
   },
 
   onReachBottom: function () {
-    
+
   },
 
   switchTab: function (e) {

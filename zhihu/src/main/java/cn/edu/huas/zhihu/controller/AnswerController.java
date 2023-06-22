@@ -49,7 +49,7 @@ public class AnswerController {
     }
 
     @RequestMapping("/createAnswer")
-    public ResultVo createOrder(Answer answer){
+    public ResultVo createAnswer(Answer answer){
 
         return answerService.createAnswer(answer);
     }
