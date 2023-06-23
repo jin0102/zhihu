@@ -41,6 +41,16 @@ public class UserServiceImpl implements UserService{
 		}
 		return ResultVo.getFailedVo("注册失败");
 	}
+
+	@Override
+	public ResultVo updataUser(User user) {
+		System.out.println(user.toString());
+		Integer i = userMapper.updataUser(user);
+		if (i > 0) {
+			return ResultVo.getSuccessVo("注册成功");
+		}
+		return ResultVo.getFailedVo("注册失败");
+	}
 }
 
 

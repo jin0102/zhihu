@@ -19,4 +19,9 @@ public class ChatController {
 		return chatService.getChatMessage(chat);
 	}
 
+	@RequestMapping("/sendMessage")
+	public ResultVo sendMessage (Chat chat) {
+		return chatService.sendMessage(chat);
+	}
+
 }

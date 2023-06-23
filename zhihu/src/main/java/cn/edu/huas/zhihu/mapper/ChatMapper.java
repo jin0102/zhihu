@@ -10,4 +10,5 @@ import java.util.List;
 public interface ChatMapper {
 	List<ChatBean> getChatMessage(Chat chat);
 	Integer getCount(Chat chat);
+	Integer sendMessage(Chat chat);
 }

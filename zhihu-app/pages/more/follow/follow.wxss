@@ -22,8 +22,15 @@
   text-align: left;
 }
 
-.follow-name{
-  padding: 8rpx 0 10rpx 0;
+.follow-describe{
+  display: flex;
+  margin-top: 10rpx;
   font-size: 30rpx;
   color: #818A8F;
+}
+
+.follow-name{
+  padding: 8rpx 0 10rpx 0;
+  font-size: 35rpx;
+  color: #262727;
 }

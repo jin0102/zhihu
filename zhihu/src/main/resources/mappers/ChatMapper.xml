@@ -24,4 +24,9 @@
         or (send_user_id = #{receive_user_id}
         and receive_user_id = #{send_user_id})
     </select>
+
+    <insert id="sendMessage" parameterType="Chat">
+        insert into chat
+        values (#{id}, #{send_user_id}, #{receive_user_id}, #{content}, #{send_time})
+    </insert>
 </mapper>

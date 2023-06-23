@@ -5,4 +5,5 @@ import cn.edu.huas.zhihu.vo.ResultVo;
 
 public interface ChatService {
 	ResultVo getChatMessage(Chat chat);
+	ResultVo sendMessage(Chat chat);
 }
