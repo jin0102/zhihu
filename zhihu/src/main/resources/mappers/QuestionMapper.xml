@@ -16,10 +16,11 @@
         select qus.id,qus.question_text,qus.user_id,qus.comment_num,user.username,user.imageurl
         from question qus
                  INNER JOIN user
-
+                 ON qus.user_id = user.id
                  INNER JOIN followque fq
                             ON fq.question_id = qus.id
-        WHERE user.id = #{user_id}
+        WHERE fq.user_id = #{user_id}
+
     </select>
 
     <select id="queryTotal" resultType="java.lang.Integer">

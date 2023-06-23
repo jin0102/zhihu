@@ -5,8 +5,8 @@ Page({
     navTab: ["热门", "关注", "收藏"],
     currentNavtab: "0",
     imgUrls: [
-      '../../images/picture2.jpg',
-      '../../images/picture1.jpg',
+      '../../images/24213.jpg',
+      '../../images/111.jpg',
       '../../images/picture3.jpg',
       '../../images/picture4.jpg'
     ],
@@ -110,6 +110,28 @@ Page({
 
   onShow: function () {
     var that = this
+    wx.request({
+      url: that.data.httpUrl + 'answer/getHotAnswerInfos', //接收热门回答
+      data: {
+        page: 1,
+        limit: 10,
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        console.log("获取hot项目信息", res.data)
+        if (res.data.code == 0) { //说明请求成功，把返回的数据，设置给data
+          that.setData({
+            hotansData: res.data.data,
+            page: 1
+          })
+        } else { //失败  提示   失败原因
+
+        }
+      }
+    })
+    
     wx.getStorage({
       key: 'token',
       success(res) {

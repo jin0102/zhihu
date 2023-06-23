@@ -13,7 +13,8 @@ Page({
     httpUrl: "http://localhost:8080/",
     qid: null,
     isData: true,
-    token:[]
+    token:[],
+    uid:null,
   },
   //事件处理函数
   bindItemTap: function (event) {
@@ -50,7 +51,6 @@ Page({
       var that = this
       console.log("444444", that.data)
       var que_id = that.data.qid
-      console.log("444444", that.data.qid)
 
       wx.getStorage({
         key: 'token',
@@ -116,7 +116,8 @@ Page({
         if (res.data.code == 0) { //说明请求成功，把返回的数据，设置给data
           that.setData({
             selansData: res.data.data,
-            qid: res.data.data[0].question_id
+            qid: res.data.data[0].question_id,
+            uid: res.data.data[0].user_id
           })
         } else { //失败  提示   失败原因
 
