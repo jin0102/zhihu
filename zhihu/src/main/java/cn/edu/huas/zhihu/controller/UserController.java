@@ -23,4 +23,9 @@ public class UserController {
 	public ResultVo userRegister(User user) {
 		return userService.userRegister(user);
 	}
+
+	@RequestMapping("updataUser")
+	public ResultVo updataUser(User user) {
+		return userService.updataUser(user);
+	}
 }

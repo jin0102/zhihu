@@ -1,4 +1,5 @@
 // pages/chat/message/message.js
+var util = require('../../../utils/util.js')
 Page({
 
   /**
@@ -9,7 +10,49 @@ Page({
     receiveid: null,
     message: {},
     token: {},
-    httpUrl:"http://localhost:8080/"
+    httpUrl: "http://localhost:8080/",
+    mess: null,
+    toBottom: ""
+  },
+
+  sendMess: function (event) {
+    var that = this
+    console.log("mess", that.data.mess)
+    console.log("data", that.data)
+    wx.request({
+      url: that.data.httpUrl + 'chat/sendMessage',
+      data: {
+        content: that.data.mess,
+        send_user_id: that.data.sendid,
+        receive_user_id: that.data.receiveid,
+        send_time: util.formatTime(new Date())
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        that.setData({
+          mess: null
+        })
+        wx.request({
+          url: that.data.httpUrl + 'chat/getChatMessage',
+          data: {
+            send_user_id: that.data.sendid,
+            receive_user_id: that.data.receiveid
+          },
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success(res) {
+            console.log("message数据：", res.data.data)
+            that.setData({
+              message: res.data.data,
+              toBottom: "item"+(res.data.data.length-1)
+            })
+          }
+        })
+      }
+    })
   },
 
   /**
@@ -17,29 +60,30 @@ Page({
    */
   onLoad(options) {
     var that = this
-    console.log("message1:",options.sendid)
-    console.log("message2:",options.receiveid)
+    console.log("message1:", options.sendid)
+    console.log("message2:", options.receiveid)
+    console.log("message3:", options.username)
+    wx.setNavigationBarTitle({
+      title: options.username,
+    })
     that.setData({
       sendid: options.sendid,
-      receiveid: options.receiveid
+      receiveid: options.receiveid,
     })
     wx.getStorage({
       key: 'token',
-      success (res) {
-        console.log("获取到的用户信息aa：",res.data)
+      success(res) {
+        console.log("获取到的用户信息aa：", res.data)
         that.setData({
           token: res.data
         })
-        wx.setNavigationBarTitle({
-          title: that.data.token.username,
-        })
       },
-      fail (res) {
+      fail(res) {
         console.log("未登录")
       }
     })
     wx.request({
-      url: that.data.httpUrl+'chat/getChatMessage',
+      url: that.data.httpUrl + 'chat/getChatMessage',
       data: {
         send_user_id: options.sendid,
         receive_user_id: options.receiveid
@@ -47,10 +91,11 @@ Page({
       header: {
         'content-type': 'application/json' // 默认值
       },
-      success (res) {
-        console.log("message数据：",res.data.data)
+      success(res) {
+        console.log("message数据：", res.data.data)
         that.setData({
-          message: res.data.data
+          message: res.data.data,
+          toBottom: "item"+(res.data.data.length-1)
         })
       }
     })

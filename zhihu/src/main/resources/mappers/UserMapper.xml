@@ -20,4 +20,9 @@
         from user
         where phone = #{phone}
     </select>
+    <update id="updataUser" parameterType="User">
+        update user
+        set username = #{username}, phone = #{phone}, `describe` = #{describe}, imageurl = #{imageurl}
+        where id = #{id}
+    </update>
 </mapper>

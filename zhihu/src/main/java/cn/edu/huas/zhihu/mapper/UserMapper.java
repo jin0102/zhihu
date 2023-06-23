@@ -14,6 +14,7 @@ public interface UserMapper {
 	User userLogin(User user);
 	Integer userRegister(User user);
 	User queryByPhone(User user);
+	Integer updataUser(User user);
 }
 
 

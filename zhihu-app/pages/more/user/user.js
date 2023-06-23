@@ -5,15 +5,89 @@ Page({
    * 页面的初始数据
    */
   data: {
+    token: {},
+    httpUrl:"http://localhost:8080/"
+  },
 
+  choosePhoto: function(){
+    var that = this;
+    wx.chooseMedia({
+      count: 1,
+      mediaType: ['image'],
+      sourceType: ['album'],
+      sizeType: ['original'],
+      success (res) {
+        console.log("图片",res)
+        that.setData({
+          'token.imageurl': res.tempFiles[0].tempFilePath,
+        })
+      },
+      fail (res) {
+        console.log("图片2",res.data)
+      }
+    })
+    // wx.chooseMedia(function(imgUrl){
+    //   that.setData({
+    //     'token.imageurl': imgUrl
+    //   })
+    // });
+  },
+  inputDescribe: function(e){
+    this.setData({
+      'token.describe': e.detail.value
+    })
+  },
+  inputNickname: function(e){
+    this.setData({
+      'token.username': e.detail.value
+    })
+  },
+  inputPhone: function(e) {
+    this.setData({
+      'token.phone': e.detail.value
+    })
+  },
+  saveUserInfo: function(){
+    var that = this
+    console.log("更改后的个人信息：",that.data.token)
+    wx.request({
+      url: that.data.httpUrl + 'user/updataUser',
+      method: "post",
+      data: {
+        id: that.data.token.id,
+        username: that.data.token.username,
+        phone: that.data.token.phone,
+        describe: that.data.token.describe,
+        imageurl: that.data.token.imageurl
+      },
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      success (res) {
+        wx.setStorage({
+          key: 'token',
+          data: that.data.token
+        })
+      },
+      fail (res) {
+
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    wx.setNavigationBarTitle({
-      title: '用户信息',
+    var that = this
+    wx.getStorage({
+      key: 'token',
+      success (res) {
+        console.log("个人信息：",res.data)
+        that.setData({
+          token: res.data
+        })
+      }
     })
   },
 

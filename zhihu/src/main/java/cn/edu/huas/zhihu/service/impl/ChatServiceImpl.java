@@ -27,4 +27,13 @@ public class ChatServiceImpl implements ChatService {
 		Integer count = chatMapper.getCount(chat);
 		return ResultVo.getSuccessVo("success", chatList, count);
 	}
+
+	@Override
+	public ResultVo sendMessage(Chat chat) {
+		Integer i = chatMapper.sendMessage(chat);
+		if (i > 0) {
+			return ResultVo.getSuccessVo("发送成功");
+		}
+		return ResultVo.getFailedVo("发送失败");
+	}
 }

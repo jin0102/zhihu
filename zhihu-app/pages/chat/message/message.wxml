@@ -1,6 +1,6 @@
 <!--pages/chat/message/message.wxml-->
 <view class="root">
-  <scroll-view class="sv" scroll-y scroll-into-view="{{toBottom}}">
+  <scroll-view class="sv" scroll-y="true" scroll-into-view="{{toBottom}}" scroll-with-animation="true">
 
     <view class="box" wx:for="{{message}}" id="item{{index}}">
       <view class="item" wx:if="{{item.send_user_id == receiveid}}">
