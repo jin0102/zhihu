@@ -2,6 +2,7 @@ package cn.edu.huas.zhihu.controller;
 
 import cn.edu.huas.zhihu.pojo.Collect;
 import cn.edu.huas.zhihu.pojo.Follow;
+import cn.edu.huas.zhihu.pojo.Followque;
 import cn.edu.huas.zhihu.service.FollowService;
 import cn.edu.huas.zhihu.vo.ResultVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,11 @@ public class FollowController {
 	public ResultVo createFollower(Follow follow){
 
 		return followService.createFollower(follow);
+	}
+
+	@RequestMapping("/createFollowQue")
+	public ResultVo createFollowQue(Followque followque){
+
+		return followService.createFollowQue(followque);
 	}
 }

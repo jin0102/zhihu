@@ -3,6 +3,7 @@ package cn.edu.huas.zhihu.service.impl;
 import cn.edu.huas.zhihu.mapper.FollowMapper;
 import cn.edu.huas.zhihu.pojo.Collect;
 import cn.edu.huas.zhihu.pojo.Follow;
+import cn.edu.huas.zhihu.pojo.Followque;
 import cn.edu.huas.zhihu.pojo.User;
 import cn.edu.huas.zhihu.service.FollowService;
 import cn.edu.huas.zhihu.vo.ResultVo;
@@ -26,6 +27,11 @@ public class FollowServiceImpl implements FollowService {
 
 	public ResultVo createFollower(Follow follow) {
 		followMapper.createFollower(follow);
+		return ResultVo.getSuccessVo("success");
+	}
+
+	public ResultVo createFollowQue(Followque followque) {
+		followMapper.createFollowQue(followque);
 		return ResultVo.getSuccessVo("success");
 	}
 }

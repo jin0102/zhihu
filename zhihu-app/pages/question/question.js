@@ -12,7 +12,8 @@ Page({
     selansData: [],
     httpUrl: "http://localhost:8080/",
     qid: null,
-    isData: true
+    isData: true,
+    token:[]
   },
   //事件处理函数
   bindItemTap: function (event) {
@@ -34,15 +35,7 @@ Page({
   clickOn: function (event) {
     let value = this.data.isChecked;
     if (value) {
-      wx.showToast({
-        title: '关注成功', //标题
-        icon: "success", //图标类型, 默认success
-        duration: 1500 //提示框停留时间, 默认1500ms
-      })
-      this.setData({
-        isChecked: !value
-      })
-    } else {
+
       wx.showToast({
         title: '取消关注', //标题
         icon: "success", //图标类型, 默认success
@@ -51,10 +44,56 @@ Page({
       this.setData({
         isChecked: !value
       })
+      
+      
+    } else {
+      var that = this
+      console.log("444444", that.data)
+      var que_id = that.data.qid
+      console.log("444444", that.data.qid)
+
+      wx.getStorage({
+        key: 'token',
+        success(res) {
+          that.setData({
+            token: res.data,
+          }, )
+          console.log("token信息", res.data); //token信息
+          console.log("id信息", that.data.token.id);
+          wx.request({
+            url: that.data.httpUrl + 'follow/createFollowQue', //接收收藏回答
+            data: {
+              question_id: que_id,
+              user_id: that.data.token.id,
+            },
+            header: {
+              'content-type': 'application/json' // 默认值
+            },
+            success(res) {
+              if (res.data.code == 0) { //说明请求成功，把返回的数据，设置给data
+                wx.showToast({
+                  title: '关注成功', //标题
+                  icon: "success", //图标类型, 默认success
+                  duration: 1500 //提示框停留时间, 默认1500ms
+                })
+                that.setData({
+                  isChecked: !value
+                })
+
+              } else { //失败  提示   失败原因
+
+              }
+            }
+          })
+
+        }
+      })
+      
     }
 
     console.log(value)
   },
+
   onLoad: function (option) {
 
     console.log('onLoad')

@@ -17,4 +17,9 @@
         insert into follow
         values (#{id},#{user_id},#{follower_id})
     </insert>
+
+    <insert id="createFollowQue" parameterType="Followque" >
+        insert into followque
+        values (#{id},#{user_id},#{question_id})
+    </insert>
 </mapper>
